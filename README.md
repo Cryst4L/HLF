@@ -5,7 +5,7 @@
 HLF stands for Hand Learning Framework. It is a C++ tool for prototyping and testing Machine Learning models on a specific vision problem: infering an articulated hand pose from a single 2D snapshot of it. It is for the most a fun tool, so don't get too hyped ! :)
 
 <p align="center">
-  <img src=./Framework/Assets/hlf-bench.png"/>
+  <img src="https://github.com/Cryst4L/HLF/tree/master/Framework/Assets/hlf-bench.png?raw=true"/>
 </p>
 
 #### Project Architecture
