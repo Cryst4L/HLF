@@ -2,10 +2,10 @@
 
 ## What is this?
 
-HLF stands for Hand Learning Framework. It is a C++ tool for prototyping and testing Machine Learning models on a specific vision problem: infering an articulated hand pose from a single 2D snapshot of it. It is for the most a fun tool, so don't get too hyped ! :)
+HLF stands for Hand Learning Framework. It is a C++ tool for prototyping and testing supervised Machine Learning models, using a specific vision problem: infering an articulated hand pose from a single 2D snapshot of it. It is for the most a fun tool, so don't get too hyped ! :)
 
 <p align="center">
-  <img src="https://github.com/Cryst4L/HLF/tree/master/Framework/Assets/hlf-bench.png?raw=true"/>
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.png"/>
 </p>
 
 #### Project Architecture
@@ -24,7 +24,7 @@ From a ML point of view, this problem is very similar to (and in fact was inspir
 
 Compared to the MNIST dataset, the samples are mechanically generated. So there is no human involved in the process, and thus you never feel cheated by the data when a predictor fails on some samples. It also means that you can arbitrary set the number of training samples, so you can push your model to its limits (the 50K sample of the MNSIT can be limitative sometimes).
 
-- It's regression problem :
+- It's a regression problem :
 
 In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight measure of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
 
@@ -93,7 +93,7 @@ The dataset configurations used are the default one (size=32; number=25K; seed=1
 
 ## Temporal Consistency and Inference
 
-I realized while developing this project that it would be a perfect environnement for testing temporal ML models,
+I realized while developing this project that it would be a quite nice environnement for testing temporal ML models,
 such as HMMs or RNNs. Nevertheless it was initially thought to evaluate feed-forward models on a Machine Vision task, so it does not allow such things for now. 
 
 Nevertheless, all is needed to implement to make it happen is an alternate dataset generator, which build samples according to a continous random walk (similar to what is displayed in the "Configuration Panel"). So I may add this feature at some point.
