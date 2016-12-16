@@ -4,7 +4,9 @@
 
 HLF stands for Hand Learning Framework. It is a C++ tool for prototyping and testing Machine Learning models on a specific vision problem: infering an articulated hand pose from a single 2D snapshot of it. It is for the most a fun tool, so don't get too hyped ! :)
 
-![alt tag](./Framework/Assets/hlf-bench.png)
+<p align="center">
+  <img src=./Framework/Assets/hlf-bench.png"/>
+</p>
 
 #### Project Architecture
 
@@ -12,7 +14,7 @@ The project is built around a dataset generation tool, which render the snapshot
 
 In addtion, it integrates a benchmarking pipeline to evaluate the user's model. This pipeline first calls the data generation tool, then run the user's model training routine, and finally tests it's performances. 
 
-HLF also comes with its own graphical environement (based on SFML) for configuration and visualization. Hence the user only needs to code his Machine Learning model before he calls the pipeline, which runs in a (minimal) GUI environement.
+HLF also comes with its own display tools (based on SFML) for configuration and visualization. Hence the user only needs to code his Machine Learning model before he calls the pipeline, which runs in a (minimal) GUI environement.
 
 #### The Learning Task
 
