@@ -1,0 +1,25 @@
+project(HLF)
+set(SOURCE
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Core/Distance.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Core/Evaluate.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Core/Sampler.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Core/Dataset.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Core/Puppet.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Core/Engine.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/InitGUI.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Widget.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Manager.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Label.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Picture.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Button.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/TrackBar.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Slider.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Entry.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/DataViewer.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/StatusBox.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/ExitBox.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/BenchPanel.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/ConfigPanel.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/InfoBox.cpp
+	PARENT_SCOPE
+)
