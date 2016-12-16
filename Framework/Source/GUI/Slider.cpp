@@ -37,28 +37,35 @@ void Slider::render(sf::RenderWindow& window)
 {
 	// slide
 	sf::RectangleShape slide(sf::Vector2f(m_dimension.x, SHAPE_OUTLINE));
+
 	sf::Vector2f position;
 	position.x = m_position.x - .5f * SHAPE_OUTLINE;
 	position.y = m_position.y - .5f * SHAPE_OUTLINE + .5f * m_dimension.y;
+
 	slide.setPosition(position);
 	window.draw(slide);
+
 	// endpoints
 	sf::CircleShape round(4 + SHAPE_OUTLINE);
 	round.setFillColor(COLOR_FILL);
 	round.setOutlineColor(COLOR_BASE);
 	round.setOutlineThickness(SHAPE_OUTLINE);
+
 	position.x = m_position.x - round.getRadius();
 	position.y = m_position.y - round.getRadius() + .5f * m_dimension.y;
+
 	round.setPosition(position);
 	window.draw(round);
 	position.x += m_dimension.x;
 	round.setPosition(position);
 	window.draw(round);
+
 	// cursor
 	sf::RectangleShape cursor(m_cursor_size);
 	cursor.setFillColor(COLOR_FILL);
 	cursor.setOutlineColor(COLOR_BASE);
 	cursor.setOutlineThickness(SHAPE_OUTLINE);
+
 	position = m_midpoint - .5f * m_cursor_size;
 	cursor.setPosition(position);
 	window.draw(cursor);

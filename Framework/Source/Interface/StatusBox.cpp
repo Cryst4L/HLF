@@ -25,18 +25,22 @@ void StatusBox::setValue(double& value)
 void StatusBox::run()
 {
 	m_window.setActive(true);
+
 	Manager manager(m_window);
 	Label label_text(m_string);
 	label_text.setPosition(25, 25);
 	manager.addWidget(label_text);
+
 	TrackBar status_bar(APP_WIDTH - 30, 35);
 	status_bar.setPosition(15, APP_HEIGHT - 50);
 	manager.addWidget(status_bar);
+
 	sf::RectangleShape canva(sf::Vector2f(APP_WIDTH - 30, APP_HEIGHT - 80));
 	canva.setFillColor(sf::Color::Transparent);
 	canva.setOutlineColor(COLOR_BASE);
 	canva.setOutlineThickness(SHAPE_OUTLINE);
 	canva.setPosition(15, 15);
+
 	ExitBox exit_box;
 
 	while (m_window.isOpen()) {
@@ -51,10 +55,12 @@ void StatusBox::run()
 			m_window.close();
 
 		globalMutex.lock();
+
 		m_window.clear();
 		manager.render();
 		m_window.draw(canva);
 		m_window.display();
+
 		globalMutex.unlock();
 	}
 }

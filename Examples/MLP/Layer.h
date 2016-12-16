@@ -28,10 +28,13 @@ class Layer
 	{
 		theta = MatrixXd::Zero(n, m + 1);
 		grad = MatrixXd::Zero(n, m + 1);
+
 		potential = VectorXd::Zero(n);
 		output = VectorXd::Zero(n + 1);
+
 		delta = VectorXd::Zero(n);
 		eout = VectorXd::Zero(m);
+
 		theta.setRandom();
 		theta *= std::sqrt(6. / (m + n));
 	}

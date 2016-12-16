@@ -19,24 +19,25 @@ class LinReg : public HLF::Model
 	void train(std::vector <MatrixXd> &data, std::vector <VectorXd> &targets)
 	{
 		int dim = 1 + data[0].rows() * data[0].cols();
+
 		// Form the design Matrix
 		MatrixXd design(data.size(), dim);
 		design.col(0).setOnes(); // bias
-
 		for (int i = 0; i < (int) data.size(); i++)
 			design.row(i).tail(dim - 1) = Map <VectorXd> (data[i].data(), dim - 1);
 
 		// Form the output Matrix
 		MatrixXd output(data.size(), HLF::DOF);
-
 		for (int i = 0; i < (int) targets.size(); i++)
 			output.row(i) = targets[i];
 
 		// Form the regularization Matrix
 		MatrixXd penality_matrix = MatrixXd::Zero(dim, dim);
 		penality_matrix.diagonal().segment(1, dim - 1).array() += L2_PENALITY;
+
 		// Gauss style's Linear Least Squares (the regression itself)
 		m_theta = (design.transpose() * design + penality_matrix).ldlt().solve(design.transpose() * output);
+
 		display();
 	}
 
@@ -45,8 +46,10 @@ class LinReg : public HLF::Model
 	{
 		int dim = m_theta.rows();
 		VectorXd input(dim);
+
 		input.tail(dim - 1) = Map <VectorXd> (sample.data(), dim - 1);
 		input(0) = 1;
+
 		return (m_theta.transpose() * input);
 	}
 

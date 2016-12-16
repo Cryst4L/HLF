@@ -21,6 +21,7 @@ void TrackBar::render(sf::RenderWindow& window)
 	bar.setSize(sf::Vector2f(m_value * m_dimension.x, m_dimension.y));
 	bar.setFillColor(sf::Color::Blue);
 	window.draw(bar);
+
 	// Container
 	sf::RectangleShape container(m_dimension);
 	container.setPosition(m_position);
@@ -28,6 +29,7 @@ void TrackBar::render(sf::RenderWindow& window)
 	container.setOutlineColor(COLOR_BASE);
 	container.setOutlineThickness(SHAPE_OUTLINE);
 	window.draw(container);
+
 	// Legend
 	std::ostringstream strstr;
 	strstr << static_cast <int> (100 * m_value);

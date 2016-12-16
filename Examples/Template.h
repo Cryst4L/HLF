@@ -24,7 +24,9 @@ class Template : public HLF::Model
 	VectorXd predict(MatrixXd &sample)
 	{
 		VectorXd prediction;
+
 		// Do stuff ...
+
 		return prediction;
 	}
 

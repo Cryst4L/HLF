@@ -42,6 +42,7 @@ void Entry::update(CommandStatus& status)
 	bool bu = status.mouse.y > m_position.y;
 	bool bd = status.mouse.y < m_position.y + m_dimension.y;
 	m_focused = bl && br && bu && bd;
+
 	bool pre_locked = m_locked;
 
 	if (m_locked && status.mouse.clicked && !m_focused)
@@ -91,11 +92,14 @@ void Entry::render(sf::RenderWindow& window)
 
 	m_offset.x = std::floor(.14 * m_font_size);
 	m_offset.y = std::floor(.5 * (m_dimension.y - .72 * m_font_size) - .28 * m_font_size);
+
 	shape.setPosition(m_position);
+	window.draw(shape);
+
 	m_text.setPosition(m_position + m_offset);
 	m_text.setString(m_string);
-	window.draw(shape);
 	window.draw(m_text);
+
 	// Display caret
 	float time = m_clock.getElapsedTime().asSeconds();
 	bool tic = (static_cast <int> (2 * time)) % 2;
@@ -103,8 +107,10 @@ void Entry::render(sf::RenderWindow& window)
 	if (tic && m_locked) {
 		sf::RectangleShape caret;
 		sf::Vector2f caret_offset;
+
 		caret_offset.x = .28 * m_font_size + m_text.getLocalBounds().width;
 		caret_offset.y = m_offset.y + .14 * m_font_size;
+
 		caret.setSize(sf::Vector2f(0.10 * m_font_size, m_font_size));
 		caret.setPosition(m_position + caret_offset);
 		window.draw(caret);
@@ -141,4 +147,3 @@ void Entry::setValue(float value)
 	ostr << std::setprecision(4) << m_value;
 	m_string = ostr.str();
 }
-

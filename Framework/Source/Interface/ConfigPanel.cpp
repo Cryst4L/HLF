@@ -23,89 +23,113 @@ void ConfigPanel::run()
 	m_preview.create(PREVIEW_SIZE, PREVIEW_SIZE);
 	m_window.create(sf::VideoMode(720, 430), "[HLF] Dataset Configuration Panel", sf::Style::Close);
 	m_window.setVerticalSyncEnabled(true);
+
 	// CRAFT THE GUI /////////////////////////////////////////////
 	Label label_alpha("Alpha   :");
 	label_alpha.setPosition(375, 40);
 	m_manager.addWidget(label_alpha);
+
 	Slider slider_alpha(90, 30);
 	slider_alpha.setPosition(490, 40);
 	m_manager.addWidget(slider_alpha);
+
 	Entry entry_alpha(90, 30, true);
 	entry_alpha.setPosition(600, 40);
 	m_manager.addWidget(entry_alpha);
+
 	Label label_beta("Beta    :");
 	label_beta.setPosition(375, 85);
 	m_manager.addWidget(label_beta);
+
 	Slider slider_beta(90, 30);
 	slider_beta.setPosition(490, 85);
 	m_manager.addWidget(slider_beta);
+
 	Entry entry_beta(90, 30, true);
 	entry_beta.setPosition(600, 85);
 	m_manager.addWidget(entry_beta);
+
 	Label label_gamma("Gamma   :");
 	label_gamma.setPosition(375, 130);
 	m_manager.addWidget(label_gamma);
+
 	Slider slider_gamma(90, 30);
 	slider_gamma.setPosition(490, 130);
 	m_manager.addWidget(slider_gamma);
+
 	Entry entry_gamma(90, 30, true);
 	entry_gamma.setPosition(600, 130);
 	m_manager.addWidget(entry_gamma);
+
 	Label label_size("Samples Size  :");
 	label_size.setPosition(375, 215);
 	m_manager.addWidget(label_size);
+
 	Entry entry_size(150, 30, true);
 	entry_size.setPosition(540, 215);
 	m_manager.addWidget(entry_size);
+
 	Label label_number("Nb of Samples :");
 	label_number.setPosition(375, 260);
 	m_manager.addWidget(label_number);
+
 	Entry entry_number(150, 30, true);
 	entry_number.setPosition(540, 260);
 	m_manager.addWidget(entry_number);
+
 	Label label_seed("Random Seed   :");
 	label_seed.setPosition(375, 305);
 	m_manager.addWidget(label_seed);
+
 	Entry entry_seed(150, 30, true);
 	entry_seed.setPosition(540, 305);
 	m_manager.addWidget(entry_seed);
 	Button button_reset(165, 50, "RESET");
 	button_reset.setPosition(360, 365);
 	m_manager.addWidget(button_reset);
+
 	Button button_generate(165, 50, "GENERATE");
 	button_generate.setPosition(540, 365);
 	m_manager.addWidget(button_generate);
+
 	Picture picture_banner;
 	picture_banner.loadFromFile(LOGO_PATH);
 	picture_banner.setPosition(15, 10);
 	m_manager.addWidget(picture_banner);
 	Picture picture_preview(m_preview);
 	picture_preview.setPosition(30, 90);
-	m_manager.addWidget(picture_preview);
+	m_manager.addWidget(picture_preview)
+;
 	sf::RectangleShape canva_preview(sf::Vector2f(330, 330));
 	canva_preview.setPosition(15, 85);
 	canva_preview.setOutlineColor(COLOR_BASE);
 	canva_preview.setOutlineThickness(SHAPE_OUTLINE);
 	canva_preview.setFillColor(sf::Color::Transparent);
+
 	Label label_preview("[ Rendering Preview ]");
 	label_preview.setPosition(30, 70);
 	m_manager.addWidget(label_preview);
+
 	sf::RectangleShape canva_neutral(sf::Vector2f(345, 155));
 	canva_neutral.setPosition(360, 20);
 	canva_neutral.setOutlineColor(COLOR_BASE);
 	canva_neutral.setOutlineThickness(SHAPE_OUTLINE);
 	canva_neutral.setFillColor(sf::Color::Transparent);
+
 	Label label_neutral("[ Neutral Position ]");
 	label_neutral.setPosition(375, 5);
 	m_manager.addWidget(label_neutral);
+
 	sf::RectangleShape canva_config(sf::Vector2f(345, 155));
 	canva_config.setPosition(360, 195);
 	canva_config.setOutlineColor(COLOR_BASE);
 	canva_config.setOutlineThickness(SHAPE_OUTLINE);
 	canva_config.setFillColor(sf::Color::Transparent);
+
 	Label label_config("[ Meta Data ]");
 	label_config.setPosition(375, 180);
 	m_manager.addWidget(label_config);
+
 	ExitBox exit_box;
 	bool first_iteration = true;
 
@@ -187,7 +211,9 @@ void ConfigPanel::run()
 
 		// COMPUTE THE PREVIEW ///////////////////////////////////
 		m_sampler.setNeutral(m_neutral);
+
 		MatrixXi sample = m_sampler.createRaw(PREVIEW_SIZE, true, 35.);
+
 		m_speed *= (1 - DAMPENING);
 		m_speed += VectorXd::Random(DOF);
 		m_state += ENTROPY * m_speed;
@@ -205,11 +231,15 @@ void ConfigPanel::run()
 
 		// RENDER THE GUI ////////////////////////////////////////
 		m_window.clear();
+
 		m_window.draw(canva_neutral);
 		m_window.draw(canva_config);
 		m_window.draw(canva_preview);
+
 		picture_preview.setImage(m_preview);
+
 		m_manager.render();
+
 		m_window.display();
 	}
 }

@@ -18,6 +18,7 @@ void Button::update(CommandStatus& status)
 	bool bu = status.mouse.y > m_position.y;
 	bool bd = status.mouse.y < m_position.y + m_dimension.y;
 	m_focused = bl && br && bu && bd;
+
 	m_pressed = m_focused && status.mouse.pressed;
 	m_clicked = m_focused && status.mouse.clicked;
 }
@@ -48,6 +49,7 @@ void Button::render(sf::RenderWindow& window)
 	// be created and a draw must be called before "getLocalBounds()" is used
 	m_offset.x = std::floor(0.5 * (m_dimension.x - m_text.getLocalBounds().width)  - 2.f);
 	m_offset.y = std::floor(0.5 * (m_dimension.y - m_text.getLocalBounds().height) - 5.f);
+
 	m_text.setPosition(shape.getPosition() + m_offset);
 	window.draw(m_text);
 }

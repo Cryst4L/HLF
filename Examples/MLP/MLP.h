@@ -69,19 +69,24 @@ class MLP : public HLF::Model
 
 			// Loop over the dataset
 			for (int i = 0; i < (int) data.size(); i++) {
+
 				// Clear the gradients
 				for (int j = 0; j < (int) layer_stack.size(); j++)
 					layer_stack[j].grad.setZero();
 
-				// Compute the gradients
+				// Setup the data
 				VectorXd input(input_size);
 				input.head(input_size - 1) = Map <VectorXd> (data[i].data(), input_size - 1);
 				input(input_size - 1) = 1.; // setup the bias
+
 				VectorXd target = targets[i];
 				VectorXd prediction(HLF::DOF);
+
+				// Compute the gradients
 				forwardPropagate(input, prediction);
 				VectorXd error = prediction - target;
 				backPropagate(input, error);
+
 				// Accumulate the cost
 				cost += error.cwiseProduct(error).sum() / data.size();
 
@@ -100,11 +105,15 @@ class MLP : public HLF::Model
 	VectorXd predict(MatrixXd &sample)
 	{
 		int input_size = sample.rows() * sample.rows() + 1;
+
 		VectorXd input(input_size);
 		input.head(input_size - 1) = Map <VectorXd> (sample.data(), input_size - 1);
 		input(input_size - 1) = 1.; // setup the bias
+
 		VectorXd prediction(HLF::DOF);
+
 		forwardPropagate(input, prediction);
+
 		return prediction.head(HLF::DOF);
 	}
 

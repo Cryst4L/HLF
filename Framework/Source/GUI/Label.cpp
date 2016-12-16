@@ -16,14 +16,17 @@ void Label::render(sf::RenderWindow& window)
 {
 	m_dimension.x = m_text.getLocalBounds().width  + 0.07 * m_font_size;
 	m_dimension.y = m_text.getLocalBounds().height + 0.42 * m_font_size;
+
 	m_offset.x = .05 * m_font_size;
 	m_offset.y = .05 * m_font_size;
+
 	sf::RectangleShape shape(m_dimension);
 	shape.setPosition(m_position);
+//	shape.setFillColor(sf::Color::Green);
 	shape.setFillColor(COLOR_FILL);
-//  shape.setFillColor(sf::Color::Green);
-	m_text.setPosition(shape.getPosition() + m_offset);
 	window.draw(shape);
+
+	m_text.setPosition(shape.getPosition() + m_offset);
 	window.draw(m_text);
 }
 

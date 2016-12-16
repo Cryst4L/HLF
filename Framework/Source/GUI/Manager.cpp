@@ -17,7 +17,9 @@ void Manager::update()
 	status.mouse.x = sf::Mouse::getPosition(m_window).x;
 	status.mouse.y = sf::Mouse::getPosition(m_window).y;
 	status.mouse.pressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+
 	sf::Event event;
+
 	status.mouse.clicked = false;
 	status.keyboard.stroked = false;
 	m_close_event = false;
