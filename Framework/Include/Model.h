@@ -14,7 +14,7 @@ namespace HLF
 {
 class Model
 {
-public :
+    public :
 	// Training Method
 	virtual void train(std::vector <MatrixXd> &data, std::vector <VectorXd> &targets) = 0;
 

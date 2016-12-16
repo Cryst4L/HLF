@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------
 # HLF: A Hand Learning Framework
-# A Machine-Learning playground dedicated hand pose estimation
-# Author: B. Halimi - 2016
+# A Machine-Learning playground for prototyping supervised models
+# Author: B. Halimi - 2016 - <bhalimi@outlook.fr>
 # ---------------------------------------------------------------
 project (HLF)
 cmake_minimum_required (VERSION 2.8)

@@ -6,10 +6,10 @@ namespace HLF
 {
 class ExitBox
 {
-  private:  	
-    bool m_cancel;
+    private:
+	bool m_cancel;
 
-  public:
+    public:
 	ExitBox();
 	void run();
 	~ExitBox();

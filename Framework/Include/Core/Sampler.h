@@ -28,28 +28,28 @@ static const char* MESH_PATH = "../Framework/Assets/hand.ms";
 
 class Sampler
 {
-  private:
-    static const double CALIBER		= 0.9;
-    static const int DRAFT_SIZE		= 48;
-    static const double AMPLITUDE	= 1.05;
+    private:
+	static const double CALIBER		= 0.9;
+	static const int DRAFT_SIZE		= 48;
+	static const double AMPLITUDE	= 1.05;
 
-    Puppet m_hand;
-    Engine m_engine;
-    Vector3d m_neutral;
+	Puppet m_hand;
+	Engine m_engine;
+	Vector3d m_neutral;
 
-    double scale(double x, double a, double b);
-    void bilinear(MatrixXi& input, int wh_dest);
+	double scale(double x, double a, double b);
+	void bilinear(MatrixXi& input, int wh_dest);
 
-  public:
-    Sampler(Puppet p);
+    public:
+	Sampler(Puppet p);
 
 	// Create a raw hand snapshot
-    MatrixXi createRaw(int wh, bool skeleton = true, double dist = 40.);
-    // Create a refined hand snapshot (unaliased, and normalized in size)
-    MatrixXi createAdjusted(int wh, bool skeleton = true, double dist = 40.);
+	MatrixXi createRaw(int wh, bool skeleton = true, double dist = 40.);
+	// Create a refined hand snapshot (unaliased, and normalized in size)
+	MatrixXi createAdjusted(int wh, bool skeleton = true, double dist = 40.);
 
-    void setNeutral(Vector3d neutral);
-    void setDoF(int id, double dr);
+	void setNeutral(Vector3d neutral);
+	void setDoF(int id, double dr);
 };
 }
 

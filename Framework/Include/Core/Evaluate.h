@@ -11,8 +11,8 @@ namespace HLF
 enum CostType {MSE, MAE};
 
 VectorXd evaluate(
-	Model *model, 
-	std::vector <MatrixXd> &data,  
-	std::vector <VectorXd> &targets,
-	CostType costType);
+        Model *model,
+        std::vector <MatrixXd> &data,
+        std::vector <VectorXd> &targets,
+        CostType costType);
 }

@@ -8,36 +8,36 @@
 
 class Entry : public Widget
 {
-  private:
+    private:
 	sf::Clock m_clock;
-   
-    sf::Text m_text;
+
+	sf::Text m_text;
 	sf::Font m_font;
-    FontSize m_font_size;
-    sf::Vector2f m_offset;
-    
+	FontSize m_font_size;
+	sf::Vector2f m_offset;
+
 	float m_value;
-    std::string m_string;
-    
+	std::string m_string;
+
 	bool m_numeric;
 	bool m_focused;
 	bool m_locked;
 	bool m_new_entry;
-	
+
 	bool numericFilter(int unicode);
 	bool textFilter(int unicode);
 
-  public:
-    Entry(int w, int h, bool numeric=false);
+    public:
+	Entry(int w, int h, bool numeric = false);
 
-    void update(CommandStatus& status);
-    void render(sf::RenderWindow& window);
+	void update(CommandStatus& status);
+	void render(sf::RenderWindow& window);
 
-    bool newEntry();
+	bool newEntry();
 
-    std::string getText();
-    void setText(std::string string);
+	std::string getText();
+	void setText(std::string string);
 
-    float getValue();
-    void setValue(float value);
+	float getValue();
+	void setValue(float value);
 };

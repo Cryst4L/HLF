@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////////////////////
-// A C++ and Eigen3 based implementation of the Meijster algorithm, 
-// which computes the distance transform of a 2D array. 
+// A C++ and Eigen3 based implementation of the Meijster algorithm,
+// which computes the distance transform of a 2D array.
 // We use it in to render the flesh hull around the hand skeleton.
 // The Meister algoritm has a O(n²) complexity, which allows this task to be quite fast.
 //////////////////////////////////////////////////////////////////////////////////////////

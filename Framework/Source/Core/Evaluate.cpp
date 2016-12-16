@@ -3,19 +3,22 @@
 namespace HLF
 {
 VectorXd evaluate(
-	Model *model, 
-	std::vector <MatrixXd> &data,  
-	std::vector <VectorXd> &targets,
-	CostType costType) 
-{	
+        Model *model,
+        std::vector <MatrixXd> &data,
+        std::vector <VectorXd> &targets,
+        CostType costType)
+{
 	VectorXd cost = VectorXd::Zero(DOF);
-
 	std::string cost_tag;
+
 	switch (costType) {
-	    case MSE: cost_tag = "Mean Squared Error";
-	        break;
-	    case MAE: cost_tag = "Mean Absolute Error";
-	        break;
+		case MSE:
+			cost_tag = "Mean Squared Error";
+			break;
+
+		case MAE:
+			cost_tag = "Mean Absolute Error";
+			break;
 	}
 
 	double progress = 0;
@@ -23,20 +26,22 @@ VectorXd evaluate(
 	status.setText("Evaluating the " + cost_tag + " of the model ...");
 
 	for (int i = 0; i < targets.size(); i++) {
-	
 		MatrixXd sample = data[i];
 		VectorXd error = model->predict(sample) - targets[i];
 
 		switch (costType) {
-		    case MSE: cost += error.cwiseProduct(error);
-		        break;
-		    case MAE: cost += error.cwiseAbs();
-		        break;
+			case MSE:
+				cost += error.cwiseProduct(error);
+				break;
+
+			case MAE:
+				cost += error.cwiseAbs();
+				break;
 		}
 
 		progress = (i + 1.f) / targets.size();
 	}
-	
+
 	return cost / data.size();
 }
 }

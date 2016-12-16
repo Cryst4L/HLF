@@ -23,40 +23,40 @@ namespace HLF
 {
 class Puppet
 {
-  private:
+    private:
 
-    struct Hinge {
-        int pivot;
-        Vector3d axis;
-        std::vector <int> id;
-        double magnitude;
-    };
+	struct Hinge {
+		int pivot;
+		Vector3d axis;
+		std::vector <int> id;
+		double magnitude;
+	};
 
-    std::vector <Vector3d> m_vertices;
-    std::vector <Vector2i> m_edges;
-    std::vector <Vector3i> m_triangles;
-    std::vector <Hinge> m_hinges;
+	std::vector <Vector3d> m_vertices;
+	std::vector <Vector2i> m_edges;
+	std::vector <Vector3i> m_triangles;
+	std::vector <Hinge> m_hinges;
 
-  public:
+    public:
 
-    Puppet(const char * path);
+	Puppet(const char * path);
 
-    void load(const char * path);
+	void load(const char * path);
 
-    // Rewrite this thing with printf (?)
-    void printContent();
+	// Rewrite this thing with printf (?)
+	void printContent();
 
 
-    // TODO: use a table to access the leafs
-    void setHinge(int hi, double magnitude);
+	// TODO: use a table to access the leafs
+	void setHinge(int hi, double magnitude);
 
-    int nbVert();
-    int nbEdge();
-    int nbTril();
+	int nbVert();
+	int nbEdge();
+	int nbTril();
 
-    Vector3d getVertex(int vi);
-    Vector2i getEdge(int ei);
-    Vector3i getTriangle(int ti);
+	Vector3d getVertex(int vi);
+	Vector2i getEdge(int ei);
+	Vector3i getTriangle(int ti);
 
 };
 }

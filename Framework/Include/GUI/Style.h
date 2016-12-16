@@ -5,11 +5,11 @@
 
 
 // Fontes --------------------------------------------------
-static const char* FONT_NAME = "DroidSansMono.ttf"; 
+static const char* FONT_NAME = "DroidSansMono.ttf";
 
-enum FontSize { 
-	FONT_SMALL	= 12, 
-	FONT_MEDIUM = 16, 
+enum FontSize {
+	FONT_SMALL	= 12,
+	FONT_MEDIUM = 16,
 	FONT_LARGE	= 24
 };
 
