@@ -1,0 +1,13 @@
+# Artistic Style configuration
+#   URL: http://astyle.sourceforge.net
+# astyle --options=.astylerc --recursive "Framework/Include/*.h" "Framework/Source/*.cpp" "Examples/*.h" main.cpp
+
+mode=c
+style=kr
+indent=tab=8
+indent-modifiers
+indent-switches
+break-blocks
+pad-oper
+delete-empty-lines
+suffix=none
