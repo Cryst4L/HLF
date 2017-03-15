@@ -15,6 +15,7 @@ set(SOURCE
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/TrackBar.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Slider.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Entry.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/Source/GUI/Canva.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/DataViewer.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/StatusBox.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/Source/Interface/ExitBox.cpp

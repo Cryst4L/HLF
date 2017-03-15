@@ -14,6 +14,8 @@ class Picture : public Widget
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 
+    bool m_show_outline;
+
     public:
 	Picture();
 	Picture(sf::Image& image);
@@ -25,4 +27,6 @@ class Picture : public Widget
 
 	void loadFromFile(const std::string &filename);
 	void setImage(sf::Image& image);
+
+    void showOutline(bool show = true);
 };

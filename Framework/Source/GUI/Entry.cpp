@@ -90,7 +90,7 @@ void Entry::render(sf::RenderWindow& window)
 		shape.setOutlineColor(COLOR_LOCK);
 	}
 
-	m_offset.x = std::floor(.14 * m_font_size);
+	m_offset.x = std::floor(.4 * m_font_size);
 	m_offset.y = std::floor(.5 * (m_dimension.y - .72 * m_font_size) - .28 * m_font_size);
 
 	shape.setPosition(m_position);
@@ -108,10 +108,10 @@ void Entry::render(sf::RenderWindow& window)
 		sf::RectangleShape caret;
 		sf::Vector2f caret_offset;
 
-		caret_offset.x = .28 * m_font_size + m_text.getLocalBounds().width;
+		caret_offset.x = .4 * m_font_size + m_text.getLocalBounds().width;
 		caret_offset.y = m_offset.y + .14 * m_font_size;
 
-		caret.setSize(sf::Vector2f(0.10 * m_font_size, m_font_size));
+		caret.setSize(sf::Vector2f(SHAPE_OUTLINE, m_font_size));
 		caret.setPosition(m_position + caret_offset);
 		window.draw(caret);
 	}

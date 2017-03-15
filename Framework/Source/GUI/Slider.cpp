@@ -42,11 +42,12 @@ void Slider::render(sf::RenderWindow& window)
 	position.x = m_position.x - .5f * SHAPE_OUTLINE;
 	position.y = m_position.y - .5f * SHAPE_OUTLINE + .5f * m_dimension.y;
 
+	slide.setFillColor(COLOR_BASE);
 	slide.setPosition(position);
 	window.draw(slide);
 
 	// endpoints
-	sf::CircleShape round(4 + SHAPE_OUTLINE);
+	sf::CircleShape round(0.2 * m_dimension.y);
 	round.setFillColor(COLOR_FILL);
 	round.setOutlineColor(COLOR_BASE);
 	round.setOutlineThickness(SHAPE_OUTLINE);

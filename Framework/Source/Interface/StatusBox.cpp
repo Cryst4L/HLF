@@ -6,7 +6,8 @@ StatusBox::StatusBox(double& value)
 	: 	m_value(value), m_string("Please wait ...")
 {
 	m_value = 0;
-	m_window.create(sf::VideoMode(APP_WIDTH, APP_HEIGHT), "[HLF] Status", sf::Style::Close);
+	m_window.create(sf::VideoMode(APP_WIDTH, APP_HEIGHT), "", sf::Style::Close);
+	m_window.setTitle("[HLF] Status");
 	m_window.setActive(false);
 	m_thread_p = new sf::Thread(&StatusBox::run, this);
 	m_thread_p->launch();
@@ -27,6 +28,11 @@ void StatusBox::run()
 	m_window.setActive(true);
 
 	Manager manager(m_window);
+
+	Canva text_canva(APP_WIDTH - 30, APP_HEIGHT - 80);
+	text_canva.setPosition(15, 15);
+	manager.addWidget(text_canva);
+
 	Label label_text(m_string);
 	label_text.setPosition(25, 25);
 	manager.addWidget(label_text);
@@ -34,12 +40,6 @@ void StatusBox::run()
 	TrackBar status_bar(APP_WIDTH - 30, 35);
 	status_bar.setPosition(15, APP_HEIGHT - 50);
 	manager.addWidget(status_bar);
-
-	sf::RectangleShape canva(sf::Vector2f(APP_WIDTH - 30, APP_HEIGHT - 80));
-	canva.setFillColor(sf::Color::Transparent);
-	canva.setOutlineColor(COLOR_BASE);
-	canva.setOutlineThickness(SHAPE_OUTLINE);
-	canva.setPosition(15, 15);
 
 	ExitBox exit_box;
 
@@ -56,9 +56,10 @@ void StatusBox::run()
 
 		globalMutex.lock();
 
-		m_window.clear();
+		m_window.clear(COLOR_WALL);
+
 		manager.render();
-		m_window.draw(canva);
+
 		m_window.display();
 
 		globalMutex.unlock();

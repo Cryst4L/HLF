@@ -10,7 +10,7 @@ class StatusBox
     private:
 
 	static const int APP_WIDTH		= 480;
-	static const int APP_HEIGHT		= 130;
+	static const int APP_HEIGHT		= 125;
 	static const float EPSILON		= 1E-2;
 
 	double& m_value;

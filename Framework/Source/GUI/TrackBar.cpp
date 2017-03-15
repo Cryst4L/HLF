@@ -15,9 +15,14 @@ void TrackBar::update(CommandStatus& status) {}
 
 void TrackBar::render(sf::RenderWindow& window)
 {
-	// Progress Bar
+	// Progress Bar Background
 	sf::RectangleShape bar;
 	bar.setPosition(m_position);
+	bar.setSize(sf::Vector2f(m_dimension.x, m_dimension.y));
+	bar.setFillColor(COLOR_FILL);
+	window.draw(bar);
+
+	// Progress Bar Filled
 	bar.setSize(sf::Vector2f(m_value * m_dimension.x, m_dimension.y));
 	bar.setFillColor(sf::Color::Blue);
 	window.draw(bar);
@@ -35,7 +40,7 @@ void TrackBar::render(sf::RenderWindow& window)
 	strstr << static_cast <int> (100 * m_value);
 	m_text.setString(strstr.str() + "%");
 //		glFlush();
-	m_offset.x = std::floor(.14 * m_font_size);
+	m_offset.x = std::floor(.4 * m_font_size);
 	m_offset.y = std::floor(.5 * (m_dimension.y - .72 * m_font_size) - .28 * m_font_size);
 	m_text.setPosition(m_position + m_offset);
 	window.draw(m_text);
@@ -45,4 +50,3 @@ void TrackBar::setValue(float value)
 {
 	m_value = value;
 }
-

@@ -4,7 +4,7 @@
 
 class Label : public Widget
 {
-    private:
+  private:
 
 	sf::Text m_text;
 	sf::Font m_font;
@@ -12,7 +12,9 @@ class Label : public Widget
 	FontSize m_font_size;
 	sf::Vector2f m_offset;
 
-    public:
+    bool m_show_outline;
+
+  public:
 
 	Label(std::string string);
 
@@ -20,4 +22,5 @@ class Label : public Widget
 	void render(sf::RenderWindow& window);
 
 	void setText(std::string words);
+    void showOutline(bool show=true);
 };

@@ -2,6 +2,13 @@
 
 namespace HLF
 {
+
+ConfigPanel::ConfigPanel()
+	:	m_manager(m_window), m_theta(0),
+	  m_puppet(MESH_PATH), m_sampler(m_puppet),
+	  m_state(0.5 * VectorXd::Ones(DOF)), m_speed(VectorXd::Random(DOF))
+{}
+
 double ConfigPanel::wave(double x)
 {
 	return 0.5 * (1 + sin(x));
@@ -12,137 +19,150 @@ double ConfigPanel::clamp(double x, double lower, double upper)
 	return std::max(lower, std::min(x, upper));
 }
 
-ConfigPanel::ConfigPanel()
-	:	m_manager(m_window), m_theta(0),
-	  m_puppet(MESH_PATH), m_sampler(m_puppet),
-	  m_state(0.5 * VectorXd::Ones(DOF)), m_speed(VectorXd::Random(DOF))
-{}
-
 void ConfigPanel::run()
 {
-	m_preview.create(PREVIEW_SIZE, PREVIEW_SIZE);
-	m_window.create(sf::VideoMode(720, 430), "[HLF] Dataset Configuration Panel", sf::Style::Close);
+	m_window.create(sf::VideoMode(720, 440), "", sf::Style::Close);
+	m_window.setTitle("[HLF] Dataset Configuration Panel");
 	m_window.setVerticalSyncEnabled(true);
-
-	// CRAFT THE GUI /////////////////////////////////////////////
-	Label label_alpha("Alpha   :");
-	label_alpha.setPosition(375, 40);
-	m_manager.addWidget(label_alpha);
-
-	Slider slider_alpha(90, 30);
-	slider_alpha.setPosition(490, 40);
-	m_manager.addWidget(slider_alpha);
-
-	Entry entry_alpha(90, 30, true);
-	entry_alpha.setPosition(600, 40);
-	m_manager.addWidget(entry_alpha);
-
-	Label label_beta("Beta    :");
-	label_beta.setPosition(375, 85);
-	m_manager.addWidget(label_beta);
-
-	Slider slider_beta(90, 30);
-	slider_beta.setPosition(490, 85);
-	m_manager.addWidget(slider_beta);
-
-	Entry entry_beta(90, 30, true);
-	entry_beta.setPosition(600, 85);
-	m_manager.addWidget(entry_beta);
-
-	Label label_gamma("Gamma   :");
-	label_gamma.setPosition(375, 130);
-	m_manager.addWidget(label_gamma);
-
-	Slider slider_gamma(90, 30);
-	slider_gamma.setPosition(490, 130);
-	m_manager.addWidget(slider_gamma);
-
-	Entry entry_gamma(90, 30, true);
-	entry_gamma.setPosition(600, 130);
-	m_manager.addWidget(entry_gamma);
-
-	Label label_size("Samples Size  :");
-	label_size.setPosition(375, 215);
-	m_manager.addWidget(label_size);
-
-	Entry entry_size(150, 30, true);
-	entry_size.setPosition(540, 215);
-	m_manager.addWidget(entry_size);
-
-	Label label_number("Nb of Samples :");
-	label_number.setPosition(375, 260);
-	m_manager.addWidget(label_number);
-
-	Entry entry_number(150, 30, true);
-	entry_number.setPosition(540, 260);
-	m_manager.addWidget(entry_number);
-
-	Label label_seed("Random Seed   :");
-	label_seed.setPosition(375, 305);
-	m_manager.addWidget(label_seed);
-
-	Entry entry_seed(150, 30, true);
-	entry_seed.setPosition(540, 305);
-	m_manager.addWidget(entry_seed);
-	Button button_reset(165, 50, "RESET");
-	button_reset.setPosition(360, 365);
-	m_manager.addWidget(button_reset);
-
-	Button button_generate(165, 50, "GENERATE");
-	button_generate.setPosition(540, 365);
-	m_manager.addWidget(button_generate);
-
-	Picture picture_banner;
-	picture_banner.loadFromFile(LOGO_PATH);
-	picture_banner.setPosition(15, 10);
-	m_manager.addWidget(picture_banner);
-	Picture picture_preview(m_preview);
-	picture_preview.setPosition(30, 90);
-	m_manager.addWidget(picture_preview)
-;
-	sf::RectangleShape canva_preview(sf::Vector2f(330, 330));
-	canva_preview.setPosition(15, 85);
-	canva_preview.setOutlineColor(COLOR_BASE);
-	canva_preview.setOutlineThickness(SHAPE_OUTLINE);
-	canva_preview.setFillColor(sf::Color::Transparent);
-
-	Label label_preview("[ Rendering Preview ]");
-	label_preview.setPosition(30, 70);
-	m_manager.addWidget(label_preview);
-
-	sf::RectangleShape canva_neutral(sf::Vector2f(345, 155));
-	canva_neutral.setPosition(360, 20);
-	canva_neutral.setOutlineColor(COLOR_BASE);
-	canva_neutral.setOutlineThickness(SHAPE_OUTLINE);
-	canva_neutral.setFillColor(sf::Color::Transparent);
-
-	Label label_neutral("[ Neutral Position ]");
-	label_neutral.setPosition(375, 5);
-	m_manager.addWidget(label_neutral);
-
-	sf::RectangleShape canva_config(sf::Vector2f(345, 155));
-	canva_config.setPosition(360, 195);
-	canva_config.setOutlineColor(COLOR_BASE);
-	canva_config.setOutlineThickness(SHAPE_OUTLINE);
-	canva_config.setFillColor(sf::Color::Transparent);
-
-	Label label_config("[ Meta Data ]");
-	label_config.setPosition(375, 180);
-	m_manager.addWidget(label_config);
 
 	ExitBox exit_box;
 	bool first_iteration = true;
 
-	// MAIN LOOP /////////////////////////////////////////////////
-	while (m_window.isOpen()) {
-		// EVENT PROCESSING //////////////////////////////////////
-		m_manager.update();
+	// BANNER //////////////////////////////////////////////////////////////////
 
+	Picture picture_banner;
+	picture_banner.loadFromFile(LOGO_PATH);
+	picture_banner.setPosition(15, 10);
+	picture_banner.showOutline();
+	m_manager.addWidget(picture_banner);
+
+	// PREVIEW /////////////////////////////////////////////////////////////////
+
+	Canva canva_preview(330, 330);
+	canva_preview.setPosition(15, 100);
+	m_manager.addWidget(canva_preview);
+
+	m_preview.create(PREVIEW_SIZE, PREVIEW_SIZE);
+
+	Picture picture_preview(m_preview);
+	picture_preview.setPosition(30, 105);
+	m_manager.addWidget(picture_preview);
+
+	Canva canva_label_preview(200, 25);
+	canva_label_preview.setPosition(30, 85);
+	m_manager.addWidget(canva_label_preview);
+
+	Label label_preview(" Rendering Preview ");
+	label_preview.setPosition(30, 85);
+	m_manager.addWidget(label_preview);
+
+	// NEUTRAL PANEL ///////////////////////////////////////////////////////////
+
+	Canva canva_neutral(345, 155);
+	canva_neutral.setPosition(360, 25);
+	m_manager.addWidget(canva_neutral);
+
+	Canva canva_label_neutral(175, 25);
+	canva_label_neutral.setPosition(375, 10);
+	m_manager.addWidget(canva_label_neutral);
+
+	Label label_neutral("Neutral Position");
+	label_neutral.setPosition(380, 10);
+	m_manager.addWidget(label_neutral);
+
+	Label label_alpha("Alpha   :");
+	label_alpha.setPosition(375, 45);
+	m_manager.addWidget(label_alpha);
+
+	Slider slider_alpha(90, 30);
+	slider_alpha.setPosition(490, 45);
+	m_manager.addWidget(slider_alpha);
+
+	Entry entry_alpha(90, 30, true);
+	entry_alpha.setPosition(600, 45);
+	m_manager.addWidget(entry_alpha);
+
+	Label label_beta("Beta    :");
+	label_beta.setPosition(375, 90);
+	m_manager.addWidget(label_beta);
+
+	Slider slider_beta(90, 30);
+	slider_beta.setPosition(490, 90);
+	m_manager.addWidget(slider_beta);
+
+	Entry entry_beta(90, 30, true);
+	entry_beta.setPosition(600, 90);
+	m_manager.addWidget(entry_beta);
+
+	Label label_gamma("Gamma   :");
+	label_gamma.setPosition(375, 135);
+	m_manager.addWidget(label_gamma);
+
+	Slider slider_gamma(90, 30);
+	slider_gamma.setPosition(490, 135);
+	m_manager.addWidget(slider_gamma);
+
+	Entry entry_gamma(90, 30, true);
+	entry_gamma.setPosition(600, 135);
+	m_manager.addWidget(entry_gamma);
+
+	// DATASET CONFIGUATION PANEL ///////////////////////////////////////////////////////////
+
+	Canva canva_config(345, 155);
+	canva_config.setPosition(360, 205);
+	m_manager.addWidget(canva_config);
+
+	Canva canva_label_config(175, 25);
+	canva_label_config.setPosition(375, 190);
+	m_manager.addWidget(canva_label_config);
+
+	Label label_config("Meta Data");
+	label_config.setPosition(380, 190);
+	m_manager.addWidget(label_config);
+
+	Label label_size("Samples Size  :");
+	label_size.setPosition(375, 225);
+	m_manager.addWidget(label_size);
+
+	Entry entry_size(150, 30, true);
+	entry_size.setPosition(540, 225);
+	m_manager.addWidget(entry_size);
+
+	Label label_number("Nb of Samples :");
+	label_number.setPosition(375, 270);
+	m_manager.addWidget(label_number);
+
+	Entry entry_number(150, 30, true);
+	entry_number.setPosition(540, 270);
+	m_manager.addWidget(entry_number);
+
+	Label label_seed("Random Seed   :");
+	label_seed.setPosition(375, 315);
+	m_manager.addWidget(label_seed);
+
+	Entry entry_seed(150, 30, true);
+	entry_seed.setPosition(540, 315);
+	m_manager.addWidget(entry_seed);
+
+	Button button_reset(165, 55, "RESET");
+	button_reset.setPosition(360, 375);
+	m_manager.addWidget(button_reset);
+
+	Button button_generate(165, 55, "GENERATE");
+	button_generate.setPosition(540, 375);
+	m_manager.addWidget(button_generate);
+
+	// MAIN LOOP ///////////////////////////////////////////////////////////////
+
+	while (m_window.isOpen()) {
+
+		m_manager.update();
 		if (m_manager.closeEvent()) {
 			exit_box.run();
 		}
 
-		// CONTROL THE CONFIGURATIONS ////////////////////////////
+		// CONTROL THE CONFIGURATIONS //////////////////////////////////////////
+
 		if (entry_size.newEntry()) {
 			m_sample_size = clamp(entry_size.getValue(), MIN_SIZE, MAX_SIZE);
 			entry_size.setValue(m_sample_size);
@@ -209,7 +229,8 @@ void ConfigPanel::run()
 			m_window.close();
 		}
 
-		// COMPUTE THE PREVIEW ///////////////////////////////////
+		// COMPUTE THE PREVIEW /////////////////////////////////////////////////
+
 		m_sampler.setNeutral(m_neutral);
 
 		MatrixXi sample = m_sampler.createRaw(PREVIEW_SIZE, true, 35.);
@@ -229,12 +250,7 @@ void ConfigPanel::run()
 			}
 		}
 
-		// RENDER THE GUI ////////////////////////////////////////
-		m_window.clear();
-
-		m_window.draw(canva_neutral);
-		m_window.draw(canva_config);
-		m_window.draw(canva_preview);
+		// RENDERING OF THE GUI ////////////////////////////////////////////////
 
 		picture_preview.setImage(m_preview);
 

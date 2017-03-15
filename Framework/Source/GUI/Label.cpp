@@ -8,13 +8,14 @@ Label::Label(std::string string)
 	m_text.setColor(COLOR_BASE);
 	m_text.setCharacterSize(m_font_size);
 	m_text.setString(string);
+	m_show_outline = false;
 }
 
 void Label::update(CommandStatus& status) {}
 
 void Label::render(sf::RenderWindow& window)
 {
-	m_dimension.x = m_text.getLocalBounds().width  + 0.07 * m_font_size;
+	m_dimension.x = m_text.getLocalBounds().width  + 0.42 * m_font_size;
 	m_dimension.y = m_text.getLocalBounds().height + 0.42 * m_font_size;
 
 	m_offset.x = .05 * m_font_size;
@@ -22,8 +23,14 @@ void Label::render(sf::RenderWindow& window)
 
 	sf::RectangleShape shape(m_dimension);
 	shape.setPosition(m_position);
-//	shape.setFillColor(sf::Color::Green);
 	shape.setFillColor(COLOR_FILL);
+//	shape.setFillColor(sf::Color::Green);
+
+	if (m_show_outline) {
+		shape.setOutlineColor(COLOR_BASE);
+		shape.setOutlineThickness(SHAPE_OUTLINE);
+	}
+
 	window.draw(shape);
 
 	m_text.setPosition(shape.getPosition() + m_offset);
@@ -36,4 +43,6 @@ void Label::setText(std::string words)
 //		glFlush();
 }
 
-
+void Label::showOutline(bool show) {
+	m_show_outline = show;
+}

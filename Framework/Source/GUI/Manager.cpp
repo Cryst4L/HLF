@@ -59,10 +59,10 @@ void Manager::update()
 void Manager::render()
 {
 //		globalWMutex.lock();
+	m_window.clear(COLOR_WALL);
 	for (int i; i < widgets.size(); i++) {
 		widgets[i]->render(m_window);
 	}
-
 //		globalWMutex.unlock();
 }
 
@@ -71,3 +71,5 @@ bool Manager::closeEvent()
 	return m_close_event;
 }
 
+// Here: overload destructor, might cause some issues
+// Manager::~Manager() {};

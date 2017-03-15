@@ -19,7 +19,7 @@ void Dataset::build(int data_size, int wh)
 		ArrayXd dof = 0.5 * (ArrayXd::Random(DOF) + 1);
 
 		for (int d = 0; d < DOF; d++)
-			sampler.setDoF(d, dof(d));
+			sampler.setDoF(d, dof(d)); 
 
 		sample = sampler.createAdjusted(wh, false).cast <double> ();
 		sample.array() = (sample / 128).array() - 1;

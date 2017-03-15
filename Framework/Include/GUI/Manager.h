@@ -21,4 +21,6 @@ class Manager
 	void render();
 
 	bool closeEvent();
+
+//    ~Manager();
 };

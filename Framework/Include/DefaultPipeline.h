@@ -46,15 +46,16 @@ void DefaultPipeline()
 	info_train.close();
 	InfoBox info_eval_train(
 	        "Training Finised !\n"
-	        "Model's performance on the train set are now evaluated.\n"
-	        "Please wait ..."
+	        "Model's performance on the train set\n"
+	        "are now evaluated. Please wait ..."
 	);
 
 	double train_error = std::sqrt(evaluate(instance, data, targets, MSE).sum());
 
 	info_eval_train.close();
 	InfoBox info_test(
-	        "Building a test dataset to evaluate generalization ..."
+	        "Building a test dataset to evaluate\n"
+			"generalization ..."
 	);
 
 	Dataset test_set(config.getNeutral(), time(0));

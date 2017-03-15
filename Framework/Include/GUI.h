@@ -15,5 +15,6 @@
 #include "GUI/Manager.h"
 #include "GUI/Slider.h"
 #include "GUI/TrackBar.h"
+#include "GUI/Canva.h"
 
 #endif // TOOLS_H

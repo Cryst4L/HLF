@@ -19,7 +19,8 @@ DataViewer::DataViewer(std::vector <MatrixXd> data, int zoom, int padding, bool 
 	int app_height = m_zoom * image_height + HEAD_HEIGHT;
 
 	m_image.create(image_width, image_height);
-	m_window.create(sf::VideoMode(app_width, app_height), "[HLF] Data Viewer", sf::Style::Close);
+	m_window.create(sf::VideoMode(app_width, app_height), "", sf::Style::Close);
+	m_window.setTitle("[HLF] Data Viewer");
 	m_window.setActive(false);
 
 	m_thread_p = new sf::Thread(&DataViewer::run, this);
@@ -75,11 +76,12 @@ void DataViewer::run()
 	manager.addWidget(picture);
 
 	std::stringstream sstr;
-	sstr << std::setprecision(2) << std::scientific << "max: " << max_value << " | ";
-	sstr << std::setprecision(2) << std::scientific << "min: " << min_value << std::endl;
+	sstr << std::setprecision(2) << std::scientific << " max: " << max_value << " |";
+	sstr << std::setprecision(2) << std::scientific << " min: " << min_value << " ";
 
 	Label label_text(sstr.str());
-	label_text.setPosition(7, 10);
+	label_text.setPosition(15, 13);
+	label_text.showOutline();
 	manager.addWidget(label_text);
 
 	sf::RectangleShape separator(sf::Vector2f(m_window.getSize().x, SHAPE_OUTLINE));
@@ -96,7 +98,6 @@ void DataViewer::run()
 
 		globalMutex.lock();
 
-		m_window.clear();
 		manager.render();
 		m_window.draw(separator);
 		m_window.display();
@@ -117,4 +118,3 @@ DataViewer::~DataViewer()
 	delete m_thread_p;
 }
 }
-

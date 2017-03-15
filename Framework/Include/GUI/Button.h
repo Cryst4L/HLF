@@ -5,7 +5,7 @@
 
 class Button : public Widget
 {
-    private:
+  private:
 	sf::Text m_text;
 	sf::Font m_font;
 	sf::Vector2f m_offset;
@@ -14,7 +14,7 @@ class Button : public Widget
 	bool m_pressed;
 	bool m_clicked;
 
-    public:
+  public:
 	Button(int w, int h, std::string string);
 
 	void update(CommandStatus& status);

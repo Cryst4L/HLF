@@ -9,15 +9,15 @@ VectorXd evaluate(
         CostType costType)
 {
 	VectorXd cost = VectorXd::Zero(DOF);
-	std::string cost_tag;
+	std::string cost_tag = "";
 
 	switch (costType) {
 		case MSE:
-			cost_tag = "Mean Squared Error";
+			cost_tag = "MSE";
 			break;
 
 		case MAE:
-			cost_tag = "Mean Absolute Error";
+			cost_tag = "MAE";
 			break;
 	}
 

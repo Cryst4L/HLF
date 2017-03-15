@@ -13,7 +13,7 @@ class BenchPanel
     private :
 
 	static const int PREVIEW_SIZE   = 325;
-	static const int HEADER_SIZE	= 150;
+	static const int HEADER_SIZE	= 125;
 //    const int HORIZONTAL_LEFTOVER = 20;
 
 	static const int MAX_INERTIA	= 25;
