@@ -6,9 +6,13 @@ StatusBox::StatusBox(double& value)
 	: 	m_value(value), m_string("Please wait ...")
 {
 	m_value = 0;
-	m_window.create(sf::VideoMode(APP_WIDTH, APP_HEIGHT), "", sf::Style::Close);
-	m_window.setTitle("[HLF] Status");
+
+	sf::VideoMode video_mode(APP_WIDTH, APP_HEIGHT);
+	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
+	
+	m_window.create(video_mode, "[HLF] Status", sf::Style::Close, settings);
 	m_window.setActive(false);
+
 	m_thread_p = new sf::Thread(&StatusBox::run, this);
 	m_thread_p->launch();
 }

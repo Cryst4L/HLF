@@ -16,8 +16,11 @@ BenchPanel::BenchPanel(Model *model_p, int sample_size)
 
 void BenchPanel::run()
 {
-	sf::VideoMode mode(2 * PREVIEW_SIZE + 30, PREVIEW_SIZE + HEADER_SIZE + 45);
-	m_window.create(mode, "[HLF] Model Benchmark Panel", sf::Style::Close);
+	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
+	sf::VideoMode video_mode(2 * PREVIEW_SIZE + 30, PREVIEW_SIZE + HEADER_SIZE + 45);
+
+	m_window.create(video_mode, "", sf::Style::Close, settings);
+	m_window.setTitle("[HLF] Model Benchmark Panel");
 	m_window.setVerticalSyncEnabled(true);
 
 	m_screen = MatrixXi::Zero(2 * PREVIEW_SIZE, PREVIEW_SIZE);

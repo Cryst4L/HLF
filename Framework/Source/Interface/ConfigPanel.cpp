@@ -21,7 +21,9 @@ double ConfigPanel::clamp(double x, double lower, double upper)
 
 void ConfigPanel::run()
 {
-	m_window.create(sf::VideoMode(720, 440), "", sf::Style::Close);
+	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
+	m_window.create(sf::VideoMode(720, 440), "", sf::Style::Close, settings);
+
 	m_window.setTitle("[HLF] Dataset Configuration Panel");
 	m_window.setVerticalSyncEnabled(true);
 

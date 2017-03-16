@@ -13,7 +13,10 @@ InfoBox::InfoBox(std::string text)
 	int app_width = std::max(180.f, text_preview.getLocalBounds().width + 60);
 	int app_height = text_preview.getLocalBounds().height + 115;
 
-	m_window.create(sf::VideoMode(app_width, app_height), "", sf::Style::Close);
+	sf::VideoMode video_mode(app_width, app_height);
+	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
+
+	m_window.create(video_mode, "", sf::Style::Close, settings);
 	m_window.setTitle("[HLF] Hey Listen !");
 	m_window.setActive(false);
 

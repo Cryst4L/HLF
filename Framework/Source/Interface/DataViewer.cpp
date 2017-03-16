@@ -3,8 +3,8 @@
 namespace HLF
 {
 DataViewer::DataViewer(std::vector <MatrixXd> data, int zoom, int padding, bool normalize, int nrows)
-	: m_data(data), m_zoom(zoom), m_normalized(normalize), m_padding(padding),
-	  m_nrows(nrows), m_ncols(0)
+:	m_data(data), m_zoom(zoom), m_normalized(normalize), m_padding(padding),
+	m_nrows(nrows), m_ncols(0)
 {
 	m_nrows = (nrows != 0) ? nrows : std::sqrt(data.size());
 	m_ncols = (data.size() + m_nrows - 1) / m_nrows;
@@ -19,7 +19,11 @@ DataViewer::DataViewer(std::vector <MatrixXd> data, int zoom, int padding, bool 
 	int app_height = m_zoom * image_height + HEAD_HEIGHT;
 
 	m_image.create(image_width, image_height);
-	m_window.create(sf::VideoMode(app_width, app_height), "", sf::Style::Close);
+
+	sf::VideoMode video_mode(app_width, app_height);
+	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
+
+	m_window.create(video_mode, "", sf::Style::Close, settings);
 	m_window.setTitle("[HLF] Data Viewer");
 	m_window.setActive(false);
 

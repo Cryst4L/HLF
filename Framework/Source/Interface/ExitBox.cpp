@@ -26,7 +26,8 @@ void ExitBox::run()
 	label_text.setPosition(25, 25);
 	manager.addWidget(label_text);
 
-	window.create(sf::VideoMode(355, 135), "Exit", sf::Style::Close);
+	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
+	window.create(sf::VideoMode(355, 135), "Exit", sf::Style::Close, settings);
 
 	while (window.isOpen()) {
 		manager.update();
