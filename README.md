@@ -26,15 +26,15 @@ Compared to the MNIST dataset, the samples are mechanically generated. So there 
 
 - It's a regression problem :
 
-In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight measure of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
-
-<p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
-</p>
+In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight scoring of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
 
 #### An Eigen3 Environement
 
 Eigen3 is a very efficient and convenient C++ library for dealing with linear algebra, and HLF makes an extensive use of it, both to render the hand samples, and to represent the data (samples are Eigen3 matrices, targets are Eigen3 vectors). Hence the user of HLF is requested to implement his model using the Eigen3 library (eventhough its not mandatory).
+
+<p align="center">
+<img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
+</p>
 
 ## How to use?
 
@@ -77,7 +77,6 @@ And that's all ! Some basic examples are already stored int the _"Examples"_ fol
 <p align="center">
   <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
 </p>
-
 
 ## Dependencies
 
