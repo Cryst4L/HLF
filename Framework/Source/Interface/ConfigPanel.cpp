@@ -54,8 +54,8 @@ void ConfigPanel::run()
 	canva_label_preview.setPosition(30, 85);
 	m_manager.addWidget(canva_label_preview);
 
-	Label label_preview(" Rendering Preview ");
-	label_preview.setPosition(30, 85);
+	Label label_preview("Rendering Preview");
+	label_preview.setPosition(35, 85);
 	m_manager.addWidget(label_preview);
 
 	// NEUTRAL PANEL ///////////////////////////////////////////////////////////

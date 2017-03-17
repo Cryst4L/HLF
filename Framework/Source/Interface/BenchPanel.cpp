@@ -36,24 +36,24 @@ void BenchPanel::run()
 	m_manager.addWidget(canva_config);
 
 	Label label_speed("Motion Speed   :");
-	label_speed.setPosition(30, 25);
+	label_speed.setPosition(25, 25);
 	m_manager.addWidget(label_speed);
 
 	Slider slider_speed(100, 25);
-	slider_speed.setPosition(205, 25);
+	slider_speed.setPosition(200, 25);
 	m_manager.addWidget(slider_speed);
 
 	Label label_inertia("Output Inertia :");
 
-	label_inertia.setPosition(30, 65);
+	label_inertia.setPosition(25, 65);
 	m_manager.addWidget(label_inertia);
 
 	Slider slider_inertia(100, 25);
-	slider_inertia.setPosition(205, 65);
+	slider_inertia.setPosition(200, 65);
 	m_manager.addWidget(slider_inertia);
 
 	Label label_time("Inference Time :");
-	label_time.setPosition(30, 105);
+	label_time.setPosition(25, 105);
 	m_manager.addWidget(label_time);
 
 	Label label_cost("[Inference Cost]");

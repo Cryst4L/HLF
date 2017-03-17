@@ -2,7 +2,7 @@
 
 namespace HLF
 {
-DataViewer::DataViewer(std::vector <MatrixXd> data, int zoom,
+DataViewer::DataViewer(std::vector <MatrixXd> data, double zoom,
 	int padding, bool normalize, int nrows)
 :	m_data(data), m_zoom(zoom), m_normalized(normalize), m_padding(padding),
 	m_nrows(nrows), m_ncols(0)
@@ -16,8 +16,10 @@ DataViewer::DataViewer(std::vector <MatrixXd> data, int zoom,
 	int image_width  = (m_sample_width  + 1) * m_ncols + 1;
 	int image_height = (m_sample_height + 1) * m_nrows + 1;
 
-	int app_width  = std::max(m_zoom * image_width, MIN_WIDTH);
-	int app_height = m_zoom * image_height + HEAD_HEIGHT;
+	int app_width  = m_zoom * image_width + 2 * BORDER;
+	int app_height = m_zoom * image_height + 3 * BORDER + 30;
+
+	app_width = std::max(app_width, MIN_WIDTH);
 
 	m_image.create(image_width, image_height);
 
@@ -66,31 +68,34 @@ void DataViewer::run()
 	}
 
 	Manager manager(m_window);
-	Button button_save(120, 30, "SAVE");
-	button_save.setPosition(m_window.getSize().x - 130, 10);
-	manager.addWidget(button_save);
 
 	std::stringstream sstr;
-	sstr << std::setprecision(2) << std::scientific << " max: " << max_value << " |";
-	sstr << std::setprecision(2) << std::scientific << " min: " << min_value << " ";
+	sstr << std::setprecision(2) << std::scientific << "max:" << max_value << " | ";
+	sstr << std::setprecision(2) << std::scientific << "min:" << min_value;
 
 	Label label_text(sstr.str());
-	label_text.setPosition(10, 13);
+	label_text.setPosition(BORDER, BORDER + 3);
 	label_text.showOutline();
 	manager.addWidget(label_text);
 
 	Entry entry_save(150, 30);
-	entry_save.setPosition(m_window.getSize().x - 290, 10);
+	entry_save.setPosition(m_window.getSize().x - 280 - BORDER, BORDER);
 	entry_save.setText("example.png");
 	manager.addWidget(entry_save);
 
+	Button button_save(120, 30, "SAVE");
+	button_save.setPosition(m_window.getSize().x - 120 - BORDER, BORDER);
+	manager.addWidget(button_save);
+
 	Picture picture(m_image);
-	picture.setPosition(0, HEAD_HEIGHT);
+	int offset = 0.5 * (m_window.getSize().x - m_zoom * m_image.getSize().x);
+	picture.setPosition(offset, 2 * BORDER + 30);
 	picture.setScale(m_zoom);
+	picture.showOutline();
 	manager.addWidget(picture);
 
-	sf::RectangleShape separator(sf::Vector2f(m_window.getSize().x, SHAPE_OUTLINE));
-	separator.setPosition(0, HEAD_HEIGHT);
+//	sf::RectangleShape separator(sf::Vector2f(m_window.getSize().x, SHAPE_OUTLINE));
+//	separator.setPosition(0, HEAD_HEIGHT);
 
 	while (m_window.isOpen()) {
 		manager.update();
@@ -104,7 +109,6 @@ void DataViewer::run()
 		globalMutex.lock();
 
 		manager.render();
-		m_window.draw(separator);
 		m_window.display();
 
 		globalMutex.unlock();

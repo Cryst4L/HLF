@@ -41,7 +41,7 @@ void InfoBox::run()
 	manager.addWidget(canva_text);
 
 	Label label_text(m_string);
-	label_text.setPosition(25, 20);
+	label_text.setPosition(20, 20);
 	manager.addWidget(label_text);
 
 	sf::Vector2f button_position;
