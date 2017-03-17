@@ -5,16 +5,20 @@
 HLF stands for Hand Learning Framework. It is a C++ tool for prototyping and testing supervised Machine Learning models, using a specific vision problem: infering an articulated hand pose from a single 2D snapshot of it. It is for the most a fun tool, so don't get too hyped ! :)
 
 <p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.png"/>
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-config.gif"/>
 </p>
 
 #### Project Architecture
 
 The project is built around a dataset generation tool, which render the snapshots of the hand model in random poses. The hand pose itself is expressed as a 10 degrees of freedom vector.
 
-In addtion, it integrates a benchmarking pipeline to evaluate the user's model. This pipeline first calls the data generation tool, then run the user's model training routine, and finally tests it's performances. 
+In addtion, it integrates a benchmarking pipeline to evaluate the user's model. This pipeline first calls the data generation tool, then run the user's model training routine, and finally tests it's performances.
 
 HLF also comes with its own display tools (based on SFML) for configuration and visualization. Hence the user only needs to code his Machine Learning model before he calls the pipeline, which runs in a (minimal) GUI environement.
+
+<p align="center">
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
+</p>
 
 #### The Learning Task
 
@@ -42,11 +46,11 @@ All you need to do is to implement a ML blackbox inheriting from HLF::Model, whi
 class MyModel : public HLF::Model
 {
   private:
-	// Training 
-    void train(std::vector <MatrixXd> &data, std::vector <VectorXd> &targets) { 
+	// Training
+    void train(std::vector <MatrixXd> &data, std::vector <VectorXd> &targets) {
 		// Do stuff ...
 	}
-	// Inference 
+	// Inference
     VectorXd predict(MatrixXd &sample) {
 		VectorXd prediction;
 		// Do stuff ...
@@ -63,12 +67,17 @@ int main(void) {
     return 0;
 }
 ```
-Then you compile the project in your _Build_ directory: 
+Then you compile the project in your _Build_ directory:
 ```sh
 cmake .. # first time only
 make
 ```
 And that's all ! Some basic examples are already stored int the _"Examples"_ folder, so you might want to have a look at it ;)
+
+<p align="center">
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
+</p>
+
 
 ## Dependencies
 
@@ -94,7 +103,7 @@ The dataset configurations used are the default one (size=32; number=25K; seed=1
 ## Temporal Consistency and Inference
 
 I realized while developing this project that it would be a quite nice environnement for testing temporal ML models,
-such as HMMs or RNNs. Nevertheless it was initially thought to evaluate feed-forward models on a Machine Vision task, so it does not allow such things for now. 
+such as HMMs or RNNs. Nevertheless it was initially thought to evaluate feed-forward models on a Machine Vision task, so it does not allow such things for now.
 
 Nevertheless, all is needed to implement to make it happen is an alternate dataset generator, which build samples according to a continous random walk (similar to what is displayed in the "Configuration Panel"). So I may add this feature at some point.
 
