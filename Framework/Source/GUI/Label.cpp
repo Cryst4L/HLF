@@ -25,7 +25,7 @@ void Label::render(sf::RenderWindow& window)
 	sf::RectangleShape shape(m_dimension);
 	shape.setPosition(m_position);
 	shape.setFillColor(COLOR_FILL);
-//	shape.setFillColor(sf::Color::Green);
+	shape.setFillColor(sf::Color::Green);
 
 	if (m_show_outline) {
 		shape.setOutlineColor(COLOR_BASE);

@@ -17,7 +17,10 @@ BenchPanel::BenchPanel(Model *model_p, int sample_size)
 void BenchPanel::run()
 {
 	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
-	sf::VideoMode video_mode(2 * PREVIEW_SIZE + 30, PREVIEW_SIZE + HEADER_SIZE + 45);
+
+	sf::VideoMode video_mode;
+	video_mode.width = 2 * (PREVIEW_SIZE + BORDER);
+	video_mode.height = PREVIEW_SIZE + HEADER_SIZE + 3 * BORDER;
 
 	m_window.create(video_mode, "", sf::Style::Close, settings);
 	m_window.setTitle("[HLF] Model Benchmark Panel");
@@ -32,57 +35,60 @@ void BenchPanel::run()
 	// CONFIGURATION PANEL /////////////////////////////////////////////////////
 
 	Canva canva_config(2 * PREVIEW_SIZE, HEADER_SIZE);
-	canva_config.setPosition(15, 15);
+	canva_config.setPosition(BORDER, BORDER);
 	m_manager.addWidget(canva_config);
 
 	Label label_speed("Motion Speed   :");
-	label_speed.setPosition(25, 25);
+	label_speed.setPosition(BORDER + 10, BORDER + 10);
 	m_manager.addWidget(label_speed);
 
-	Slider slider_speed(100, 25);
-	slider_speed.setPosition(200, 25);
+	Slider slider_speed(95, 25);
+	slider_speed.setPosition(BORDER + 200, BORDER + 10);
 	m_manager.addWidget(slider_speed);
 
 	Label label_inertia("Output Inertia :");
-
-	label_inertia.setPosition(25, 65);
+	label_inertia.setPosition(BORDER + 10, BORDER + 50);
 	m_manager.addWidget(label_inertia);
 
-	Slider slider_inertia(100, 25);
-	slider_inertia.setPosition(200, 65);
+	Slider slider_inertia(95, 25);
+	slider_inertia.setPosition(BORDER + 200, BORDER + 50);
 	m_manager.addWidget(slider_inertia);
 
 	Label label_time("Inference Time :");
-	label_time.setPosition(25, 105);
+	label_time.setPosition(BORDER + 10, BORDER + 90);
 	m_manager.addWidget(label_time);
 
+	Label label_measure("");
+	label_measure.setPosition(BORDER + 190, BORDER + 90);
+	m_manager.addWidget(label_measure);
+
 	Label label_cost("[Inference Cost]");
-	label_cost.setPosition(350, 25);
+	label_cost.setPosition(BORDER + PREVIEW_SIZE + 10, BORDER + 10);
 	m_manager.addWidget(label_cost);
 
 	Label label_l1("L1 :");
-	label_l1.setPosition(350, 65);
+	label_l1.setPosition(BORDER + PREVIEW_SIZE + 10, BORDER + 50);
 	m_manager.addWidget(label_l1);
 
 	Label label_l2("L2 :");
-	label_l2.setPosition(350, 105);
+	label_l2.setPosition(BORDER + PREVIEW_SIZE + 10, BORDER + 90);
 	m_manager.addWidget(label_l2);
 
 	Label label_input("[Input]");
-	label_input.setPosition(2 * PREVIEW_SIZE - HEADER_SIZE + 35, 25);
+	label_input.setPosition(BORDER + 2 * PREVIEW_SIZE - 110, BORDER + 10);
 	m_manager.addWidget(label_input);
 
 	Picture picture_input;
-	picture_input.setPosition(2 * PREVIEW_SIZE - HEADER_SIZE + 40, 65);
+	picture_input.setPosition(BORDER + 2 * PREVIEW_SIZE - 103, BORDER + 50);
 	picture_input.setScale(60.f / m_sample_size);
 	picture_input.showOutline();
 	m_manager.addWidget(picture_input);
 
-	sf::RectangleShape separator_a(sf::Vector2f(SHAPE_OUTLINE, HEADER_SIZE));
-	separator_a.setPosition(330, 15);
+//	sf::RectangleShape separator_a(sf::Vector2f(SHAPE_OUTLINE, HEADER_SIZE));
+//	separator_a.setPosition(BORDER + 315, BORDER);
 
-	sf::RectangleShape separator_b(sf::Vector2f(SHAPE_OUTLINE, HEADER_SIZE));
-	separator_b.setPosition(2 * PREVIEW_SIZE - HEADER_SIZE, 15);
+//	sf::RectangleShape separator_b(sf::Vector2f(SHAPE_OUTLINE, HEADER_SIZE));
+//	separator_b.setPosition(2 * PREVIEW_SIZE - HEADER_SIZE, BORDER);
 
 	m_scale_speed = slider_speed.getValue() * MAX_SPEED;
 	m_scale_inertia = slider_inertia.getValue() * MAX_INERTIA;
@@ -90,20 +96,20 @@ void BenchPanel::run()
 	// VISUALIZATION PANEL /////////////////////////////////////////////////////
 
 	Picture picture_screen;
-	picture_screen.setPosition(15, HEADER_SIZE + 30);
+	picture_screen.setPosition(BORDER, HEADER_SIZE + 2 * BORDER);
 	picture_screen.showOutline();
 	m_manager.addWidget(picture_screen);
 
 	Label label_ground("Ground Truth");
-	label_ground.setPosition(25, HEADER_SIZE + 35);
+	label_ground.setPosition(BORDER + 10, HEADER_SIZE + 2 * BORDER + 5);
 	m_manager.addWidget(label_ground);
 
 	Label label_prediction("Prediction");
-	label_prediction.setPosition(PREVIEW_SIZE + 25, HEADER_SIZE + 35);
+	label_prediction.setPosition(PREVIEW_SIZE + BORDER + 10, HEADER_SIZE + 2 * BORDER + 5);
 	m_manager.addWidget(label_prediction);
 
 	sf::RectangleShape separator_c(sf::Vector2f(SHAPE_OUTLINE, PREVIEW_SIZE));
-	separator_c.setPosition(PREVIEW_SIZE + 15, HEADER_SIZE + 30);
+	separator_c.setPosition(PREVIEW_SIZE + BORDER, HEADER_SIZE + 2 * BORDER);
 
 	// MAIN LOOP ///////////////////////////////////////////////////////////////
 
@@ -159,7 +165,7 @@ void BenchPanel::run()
 
 		strstr.precision(2);
 		strstr << std::fixed << std::setw(6) << (t1.tv_usec - t0.tv_usec) / 1e3;
-		label_time.setText("Inference Time : [" + strstr.str() + " ms]");
+		label_measure.setText("[" + strstr.str() + " ms]");
 		strstr.str("");
 
 		m_motion_record.rightCols(MAX_INERTIA - 1) =

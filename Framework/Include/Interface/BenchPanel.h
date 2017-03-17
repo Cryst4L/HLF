@@ -12,7 +12,8 @@ class BenchPanel
 {
     private :
 
-	static const int PREVIEW_SIZE   = 325;
+    static const int BORDER         = 10;
+	static const int PREVIEW_SIZE   = 330; // 325
 	static const int HEADER_SIZE	= 125;
 //    const int HORIZONTAL_LEFTOVER = 20;
 
