@@ -16,10 +16,6 @@ In addtion, it integrates a benchmarking pipeline to evaluate the user's model. 
 
 HLF also comes with its own display tools (based on SFML) for configuration and visualization. Hence the user only needs to code his Machine Learning model before he calls the pipeline, which runs in a (minimal) GUI environement.
 
-<p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
-</p>
-
 #### The Learning Task
 
 From a ML point of view, this problem is very similar to (and in fact was inspired by) the MNIST challenge, which is already a gold standard for protyping ML models. But with two main differencies:
@@ -31,6 +27,10 @@ Compared to the MNIST dataset, the samples are mechanically generated. So there 
 - It's a regression problem :
 
 In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight measure of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
+
+<p align="center">
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
+</p>
 
 #### An Eigen3 Environement
 
