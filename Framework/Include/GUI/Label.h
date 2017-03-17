@@ -2,6 +2,8 @@
 
 #include "Widget.h"
 
+#include <cmath>
+
 class Label : public Widget
 {
   private:

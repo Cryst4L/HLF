@@ -108,7 +108,7 @@ void Entry::render(sf::RenderWindow& window)
 		sf::RectangleShape caret;
 		sf::Vector2f caret_offset;
 
-		caret_offset.x = .4 * m_font_size + m_text.getLocalBounds().width;
+		caret_offset.x = .5 * m_font_size + m_text.getLocalBounds().width;
 		caret_offset.y = m_offset.y + .14 * m_font_size;
 
 		caret.setSize(sf::Vector2f(SHAPE_OUTLINE, m_font_size));

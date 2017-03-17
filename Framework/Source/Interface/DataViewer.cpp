@@ -2,7 +2,8 @@
 
 namespace HLF
 {
-DataViewer::DataViewer(std::vector <MatrixXd> data, int zoom, int padding, bool normalize, int nrows)
+DataViewer::DataViewer(std::vector <MatrixXd> data, int zoom,
+	int padding, bool normalize, int nrows)
 :	m_data(data), m_zoom(zoom), m_normalized(normalize), m_padding(padding),
 	m_nrows(nrows), m_ncols(0)
 {
@@ -69,6 +70,15 @@ void DataViewer::run()
 	button_save.setPosition(m_window.getSize().x - 130, 10);
 	manager.addWidget(button_save);
 
+	std::stringstream sstr;
+	sstr << std::setprecision(2) << std::scientific << " max: " << max_value << " |";
+	sstr << std::setprecision(2) << std::scientific << " min: " << min_value << " ";
+
+	Label label_text(sstr.str());
+	label_text.setPosition(10, 13);
+	label_text.showOutline();
+	manager.addWidget(label_text);
+
 	Entry entry_save(150, 30);
 	entry_save.setPosition(m_window.getSize().x - 290, 10);
 	entry_save.setText("example.png");
@@ -78,15 +88,6 @@ void DataViewer::run()
 	picture.setPosition(0, HEAD_HEIGHT);
 	picture.setScale(m_zoom);
 	manager.addWidget(picture);
-
-	std::stringstream sstr;
-	sstr << std::setprecision(2) << std::scientific << " max: " << max_value << " |";
-	sstr << std::setprecision(2) << std::scientific << " min: " << min_value << " ";
-
-	Label label_text(sstr.str());
-	label_text.setPosition(15, 13);
-	label_text.showOutline();
-	manager.addWidget(label_text);
 
 	sf::RectangleShape separator(sf::Vector2f(m_window.getSize().x, SHAPE_OUTLINE));
 	separator.setPosition(0, HEAD_HEIGHT);
