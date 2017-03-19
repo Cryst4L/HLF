@@ -24,10 +24,6 @@ From a ML point of view, this problem is very similar to (and in fact was inspir
 
 Compared to the MNIST dataset, the samples are mechanically generated. So there is no human involved in the process, and thus you never feel cheated by the data when a predictor fails on some samples. It also means that you can arbitrary set the number of training samples, so you can push your model to its limits (the 50K sample of the MNSIT can be limitative sometimes).
 
-<p align="center">
-<img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
-</p>
-
 - It's a regression problem :
 
 In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight scoring of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
@@ -38,7 +34,7 @@ In HLF the task is a regression: You must infer the hand pose as a vector of 10 
 Eigen3 is a very efficient and convenient C++ library for dealing with linear algebra, and HLF makes an extensive use of it, both to render the hand samples, and to represent the data (samples are Eigen3 matrices, targets are Eigen3 vectors). Hence the user of HLF is requested to implement his model using the Eigen3 library (eventhough its not mandatory).
 
 <p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.gif"/>
 </p>
 
 
@@ -73,16 +69,19 @@ int main(void) {
     return 0;
 }
 ```
-<p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
-</p>
 
 Then you compile the project in your _Build_ directory:
 ```sh
-cmake .. # first time only
+mkdir build
+cd build
+cmake .. 
 make
 ```
 And that's all ! Some basic examples are already stored int the _"Examples"_ folder, so you might want to have a look at it ;)
+
+<p align="center">
+<img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.png"/>
+</p>
 
 ## Dependencies
 
@@ -120,7 +119,7 @@ Nevertheless, all is needed to implement to make it happen is an alternate datas
 
 First of all, this project works like a charm on it's dev machine, a 64bit desktop geared with a Intel (Skylake) CPU and a NVidia GPU, running under Ubuntu 16.04 LTS
 
-Nevertheless it is known that fully threading multiple instances of the SFML simultaneously can limits the portability of one's project, because of the way it interacts with XCB and GLX. Hence, on certain Linux platforms you may encounter issues (such as random XCB crashs). If so, a workaround might be to upgrade your XCB using the following [script](https://gist.github.com/slimsag/a26d838ccc4480ce21bc#file-gistfile1-sh).
+Nevertheless it is known that fully threading multiple instances of the SFML simultaneously is a bit acrobatic and can limits the portability of one's project on old systems, because of the way it interacts with XCB. Hence, on certain Linux platforms you may encounter some random crash of the UI. If so, a workaround might be to upgrade your XCB using the following [script](https://gist.github.com/slimsag/a26d838ccc4480ce21bc#file-gistfile1-sh).
 
 By the way if you manage to use this project in a different environement, feel free to give feedbacks, and propose modifications to both the sources and the CMakeLists ;)
 
