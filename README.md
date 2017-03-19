@@ -97,7 +97,7 @@ Not to mention this project has been developed and tested only in a Linux (Xubun
 Here are some results of the benchmarked models included in the _"Examples"_ folder.
 The dataset configurations used are the default one (size=32; number=25K; seed=1234).
 
-<p align="center">
+<center>
 
 | Model                                      | L2 Cost (Train) | L2 Cost (Test)  |
 |--------------------------------------------|----------------:|----------------:|
@@ -106,7 +106,7 @@ The dataset configurations used are the default one (size=32; number=25K; seed=1
 | PCA features (50) + Quadratic Classifier   |             0.56|         **0.59**|
 | BP Neural Net (3 Hidden Layer x 50 Units)  |             0.61|             0.64|
 
-</p>
+</center>
 
 ## Temporal Consistency and Inference
 
