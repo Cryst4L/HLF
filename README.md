@@ -34,7 +34,7 @@ In HLF the task is a regression: You must infer the hand pose as a vector of 10 
 Eigen3 is a very efficient and convenient C++ library for dealing with linear algebra, and HLF makes an extensive use of it, both to render the hand samples, and to represent the data (samples are Eigen3 matrices, targets are Eigen3 vectors). Hence the user of HLF is requested to implement his model using the Eigen3 library (eventhough its not mandatory).
 
 <p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.gif"/>
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
 </p>
 
 
@@ -80,7 +80,7 @@ make
 And that's all ! Some basic examples are already stored int the _"Examples"_ folder, so you might want to have a look at it ;)
 
 <p align="center">
-<img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.png"/>
+<img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
 </p>
 
 ## Dependencies
