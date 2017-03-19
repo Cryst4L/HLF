@@ -67,6 +67,10 @@ int main(void) {
     return 0;
 }
 ```
+<p align="center">
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
+</p>
+
 Then you compile the project in your _Build_ directory:
 ```sh
 cmake .. # first time only
@@ -82,10 +86,6 @@ As explained earlier, HLF makes an extensive use of:
 - The Eigen3 linear algebra library: **sudo apt-get install libeigen3-dev**
 
 Not to mention this project has been developed and tested only in a Linux (Xubuntu) environement. So having a recent Linux machine is _infine_ required :)
-
-<p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
-</p>
 
 ## Example Results
 
