@@ -28,13 +28,13 @@ Compared to the MNIST dataset, the samples are mechanically generated. So there 
 
 In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight scoring of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
 
-#### An Eigen3 Environement
-
-Eigen3 is a very efficient and convenient C++ library for dealing with linear algebra, and HLF makes an extensive use of it, both to render the hand samples, and to represent the data (samples are Eigen3 matrices, targets are Eigen3 vectors). Hence the user of HLF is requested to implement his model using the Eigen3 library (eventhough its not mandatory).
-
 <p align="center">
 <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-data.png"/>
 </p>
+
+#### An Eigen3 Environement
+
+Eigen3 is a very efficient and convenient C++ library for dealing with linear algebra, and HLF makes an extensive use of it, both to render the hand samples, and to represent the data (samples are Eigen3 matrices, targets are Eigen3 vectors). Hence the user of HLF is requested to implement his model using the Eigen3 library (eventhough its not mandatory).
 
 ## How to use?
 
@@ -74,10 +74,6 @@ make
 ```
 And that's all ! Some basic examples are already stored int the _"Examples"_ folder, so you might want to have a look at it ;)
 
-<p align="center">
-  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
-</p>
-
 ## Dependencies
 
 As explained earlier, HLF makes an extensive use of:
@@ -87,10 +83,16 @@ As explained earlier, HLF makes an extensive use of:
 
 Not to mention this project has been developed and tested only in a Linux (Xubuntu) environement. So having a recent Linux machine is _infine_ required :)
 
+<p align="center">
+  <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
+</p>
+
 ## Example Results
 
 Here are some results of the benchmarked models included in the _"Examples"_ folder.
 The dataset configurations used are the default one (size=32; number=25K; seed=1234).
+
+<center>
 
 | Model                                      | L2 Cost (Train) | L2 Cost (Test)  |
 |--------------------------------------------|----------------:|----------------:|
@@ -98,6 +100,8 @@ The dataset configurations used are the default one (size=32; number=25K; seed=1
 | MultiLinear Regression (with bias)         |             0.75|             0.76|
 | PCA features (50) + Quadratic Classifier   |             0.56|         **0.59**|
 | BP Neural Net (3 Hidden Layer x 50 Units)  |             0.61|             0.64|
+
+</center>
 
 ## Temporal Consistency and Inference
 
