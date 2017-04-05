@@ -115,11 +115,11 @@ such as HMMs or RNNs. Nevertheless it was initially thought to evaluate feed-for
 
 Nevertheless, all is needed to implement to make it happen is an alternate dataset generator, which build samples according to a continous random walk (similar to what is displayed in the "Configuration Panel"). So I may add this feature at some point.
 
-## Portability, XCB and MultiThreading
+## Portability, XCB and MultiThreading)
 
 First of all, this project works like a charm on it's dev machine, a 64bit desktop geared with a Intel (Skylake) CPU and a NVidia GPU, running under Ubuntu 16.04 LTS
 
-Nevertheless it is known that fully threading multiple instances of the SFML simultaneously is a bit acrobatic and can limits the portability of one's project on old systems, because of the way it interacts with XCB. Hence, on certain Linux platforms you may encounter some random crash of the UI. If so, a workaround might be to upgrade your XCB using the following [script](https://gist.github.com/slimsag/a26d838ccc4480ce21bc#file-gistfile1-sh).
+Nevertheless it is known that fully threading multiple instances of the SFML simultaneously is a bit acrobatic and can limits the portability of one's project on old systems, because of the way it interacts with XCB. Hence, on certain Linux platforms you may encounter some random UI crashes. If so, a workaround might be to upgrade your XCB using the following [script](https://gist.github.com/slimsag/a26d838ccc4480ce21bc#file-gistfile1-sh).
 
 By the way if you manage to use this project in a different environement, feel free to give feedbacks, and propose modifications to both the sources and the CMakeLists ;)
 
