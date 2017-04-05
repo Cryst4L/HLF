@@ -115,7 +115,7 @@ such as HMMs or RNNs. Nevertheless it was initially thought to evaluate feed-for
 
 Nevertheless, all is needed to implement to make it happen is an alternate dataset generator, which build samples according to a continous random walk (similar to what is displayed in the "Configuration Panel"). So I may add this feature at some point.
 
-## Portability, XCB and MultiThreading)
+## Portability, XCB and MultiThreading
 
 First of all, this project works like a charm on it's dev machine, a 64bit desktop geared with a Intel (Skylake) CPU and a NVidia GPU, running under Ubuntu 16.04 LTS
 
