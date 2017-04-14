@@ -113,7 +113,7 @@ The dataset configurations used are the default one (size=32; number=25K; seed=1
 I realized while developing this project that it would be a quite nice environnement for testing temporal ML models,
 such as HMMs or RNNs. Nevertheless it was initially thought to evaluate feed-forward models on a Machine Vision task, so it does not allow such things for now.
 
-Nevertheless, all is needed to implement to make it happen is an alternate dataset generator, which build samples according to a continous random walk (similar to what is displayed in the "Configuration Panel"). So I may add this feature at some point.
+On the other hand, an alternate dataset generator, which build samples according to a continous random walk (similar to what is displayed in the "Configuration Panel"), is the only thing required to support these kinds of models. So I may add this feature at some point.
 
 ## Portability, XCB and MultiThreading
 
