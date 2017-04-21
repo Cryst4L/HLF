@@ -2,8 +2,8 @@
 
 namespace HLF
 {
-DataViewer::DataViewer(std::vector <MatrixXd> data, double zoom,
-	int padding, bool normalize, int nrows)
+DataViewer::DataViewer(std::vector <MatrixXd> data, double zoom, 
+	int nrows, int padding, bool normalize)
 :	m_data(data), m_zoom(zoom), m_normalized(normalize), m_padding(padding),
 	m_nrows(nrows), m_ncols(0)
 {
@@ -80,7 +80,7 @@ void DataViewer::run()
 
 	Entry entry_save(150, 30);
 	entry_save.setPosition(m_window.getSize().x - 280 - BORDER, BORDER);
-	entry_save.setText("example.png");
+	entry_save.setText("data.png");
 	manager.addWidget(entry_save);
 
 	Button button_save(120, 30, "SAVE");

@@ -22,10 +22,11 @@ double ConfigPanel::clamp(double x, double lower, double upper)
 void ConfigPanel::run()
 {
 	sf::ContextSettings settings(0, 0, ANTI_ALIASING);
-	m_window.create(sf::VideoMode(720, 440), "", sf::Style::Close, settings);
+	m_window.create(sf::VideoMode(720, 450), "", sf::Style::Close, settings);
 
 	m_window.setTitle("[HLF] Dataset Configuration Panel");
 	m_window.setVerticalSyncEnabled(true);
+	m_window.setFramerateLimit(60);
 
 	ExitBox exit_box;
 	bool first_iteration = true;
@@ -34,104 +35,105 @@ void ConfigPanel::run()
 
 	Picture picture_banner;
 	picture_banner.loadFromFile(LOGO_PATH);
-	picture_banner.setPosition(15, 10);
+	picture_banner.setPosition(15, 15);
 	picture_banner.showOutline();
 	m_manager.addWidget(picture_banner);
 
 	// PREVIEW /////////////////////////////////////////////////////////////////
 
 	Canva canva_preview(330, 330);
-	canva_preview.setPosition(15, 100);
+	canva_preview.setPosition(15, 105);
+	canva_preview.setFillColor(sf::Color::Black);
 	m_manager.addWidget(canva_preview);
 
 	m_preview.create(PREVIEW_SIZE, PREVIEW_SIZE);
 
 	Picture picture_preview(m_preview);
-	picture_preview.setPosition(30, 105);
+	picture_preview.setPosition(30, 110);
 	m_manager.addWidget(picture_preview);
 
 	Canva canva_label_preview(200, 25);
-	canva_label_preview.setPosition(30, 85);
+	canva_label_preview.setPosition(30, 90);
 	m_manager.addWidget(canva_label_preview);
 
 	Label label_preview("Rendering Preview");
-	label_preview.setPosition(35, 85);
+	label_preview.setPosition(35, 90);
 	m_manager.addWidget(label_preview);
 
 	// NEUTRAL PANEL ///////////////////////////////////////////////////////////
 
 	Canva canva_neutral(345, 155);
-	canva_neutral.setPosition(360, 25);
+	canva_neutral.setPosition(360, 30);
 	m_manager.addWidget(canva_neutral);
 
 	Canva canva_label_neutral(175, 25);
-	canva_label_neutral.setPosition(375, 10);
+	canva_label_neutral.setPosition(375, 15);
 	m_manager.addWidget(canva_label_neutral);
 
 	Label label_neutral("Neutral Position");
-	label_neutral.setPosition(380, 10);
+	label_neutral.setPosition(380, 15);
 	m_manager.addWidget(label_neutral);
 
 	Label label_alpha("Alpha   :");
-	label_alpha.setPosition(375, 45);
+	label_alpha.setPosition(375, 50);
 	m_manager.addWidget(label_alpha);
 
 	Slider slider_alpha(90, 30);
-	slider_alpha.setPosition(490, 45);
+	slider_alpha.setPosition(490, 50);
 	m_manager.addWidget(slider_alpha);
 
 	Entry entry_alpha(90, 30, true);
-	entry_alpha.setPosition(600, 45);
+	entry_alpha.setPosition(600, 50);
 	m_manager.addWidget(entry_alpha);
 
 	Label label_beta("Beta    :");
-	label_beta.setPosition(375, 90);
+	label_beta.setPosition(375, 95);
 	m_manager.addWidget(label_beta);
 
 	Slider slider_beta(90, 30);
-	slider_beta.setPosition(490, 90);
+	slider_beta.setPosition(490, 95);
 	m_manager.addWidget(slider_beta);
 
 	Entry entry_beta(90, 30, true);
-	entry_beta.setPosition(600, 90);
+	entry_beta.setPosition(600, 95);
 	m_manager.addWidget(entry_beta);
 
 	Label label_gamma("Gamma   :");
-	label_gamma.setPosition(375, 135);
+	label_gamma.setPosition(375, 140);
 	m_manager.addWidget(label_gamma);
 
 	Slider slider_gamma(90, 30);
-	slider_gamma.setPosition(490, 135);
+	slider_gamma.setPosition(490, 140);
 	m_manager.addWidget(slider_gamma);
 
 	Entry entry_gamma(90, 30, true);
-	entry_gamma.setPosition(600, 135);
+	entry_gamma.setPosition(600, 140);
 	m_manager.addWidget(entry_gamma);
 
 	// DATASET CONFIGUATION PANEL ///////////////////////////////////////////////////////////
 
 	Canva canva_config(345, 155);
-	canva_config.setPosition(360, 205);
+	canva_config.setPosition(360, 210);
 	m_manager.addWidget(canva_config);
 
 	Canva canva_label_config(175, 25);
-	canva_label_config.setPosition(375, 190);
+	canva_label_config.setPosition(375, 195);
 	m_manager.addWidget(canva_label_config);
 
 	Label label_config("Meta Data");
-	label_config.setPosition(380, 190);
+	label_config.setPosition(380, 195);
 	m_manager.addWidget(label_config);
 
 	Label label_size("Samples Size  :");
-	label_size.setPosition(375, 225);
+	label_size.setPosition(375, 230);
 	m_manager.addWidget(label_size);
 
 	Entry entry_size(150, 30, true);
-	entry_size.setPosition(540, 225);
+	entry_size.setPosition(540, 230);
 	m_manager.addWidget(entry_size);
 
 	Label label_number("Nb of Samples :");
-	label_number.setPosition(375, 270);
+	label_number.setPosition(375, 275);
 	m_manager.addWidget(label_number);
 
 	Entry entry_number(150, 30, true);
@@ -139,19 +141,19 @@ void ConfigPanel::run()
 	m_manager.addWidget(entry_number);
 
 	Label label_seed("Random Seed   :");
-	label_seed.setPosition(375, 315);
+	label_seed.setPosition(375, 320);
 	m_manager.addWidget(label_seed);
 
 	Entry entry_seed(150, 30, true);
-	entry_seed.setPosition(540, 315);
+	entry_seed.setPosition(540, 320);
 	m_manager.addWidget(entry_seed);
 
 	Button button_reset(165, 55, "RESET");
-	button_reset.setPosition(360, 375);
+	button_reset.setPosition(360, 380);
 	m_manager.addWidget(button_reset);
 
 	Button button_generate(165, 55, "GENERATE");
-	button_generate.setPosition(540, 375);
+	button_generate.setPosition(540, 380);
 	m_manager.addWidget(button_generate);
 
 	// MAIN LOOP ///////////////////////////////////////////////////////////////
@@ -214,16 +216,21 @@ void ConfigPanel::run()
 		}
 
 		if (first_iteration || button_reset.isClicked()) {
+
 			m_neutral.setZero();
 			entry_alpha.setValue(0);
 			entry_beta.setValue(0);
 			entry_gamma.setValue(0);
+
 			m_sample_size = DEF_SIZE;
 			entry_size.setValue(m_sample_size);
+
 			m_sample_number = DEF_NMBR;
 			entry_number.setValue(m_sample_number);
+
 			m_sample_seed = DEF_SEED;
 			entry_seed.setValue(m_sample_seed);
+
 			first_iteration = false;
 		}
 

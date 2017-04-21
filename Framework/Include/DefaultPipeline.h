@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // The standard usage of HLF consist in running the default processing pipeline.
 // All the user needs to do is to define a Machine Learning blackbox inheriting
 // from HLF::Model, and then call the benchmarking pipeline, as shown below:
@@ -6,7 +6,7 @@
 // 		HLF::DefaultPipeline <MyBlackBox> ()
 //
 // Isn't that simple ? ;)
-/////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 #pragma once
 
 #include "Core.h"
@@ -33,8 +33,8 @@ void DefaultPipeline()
 	std::vector <MatrixXd>& data = data_set.getData();
 	std::vector <VectorXd>& targets = data_set.getTargets();
 
-	std::vector <MatrixXd> subset(&data[0], &data[64]);
-	DataViewer view(subset, 72. / sample_size);
+	std::vector <MatrixXd> subset(&data[0], &data[32]);
+	DataViewer view(subset, 72. / sample_size, 4);
 
 	InfoBox info_train(
 	        "Model training will start now !\n"

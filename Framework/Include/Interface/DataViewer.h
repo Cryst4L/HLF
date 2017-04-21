@@ -15,8 +15,8 @@ class DataViewer
 {
     private:
 
-    static const int BORDER         = 10;
-	static const int MIN_WIDTH		= 600;
+    static const int BORDER     = 10;
+	static const int MIN_WIDTH  = 600;
 
 	double m_zoom;
 	int m_padding;
@@ -38,8 +38,8 @@ class DataViewer
 
     public:
 
-	DataViewer(std::vector <MatrixXd> data, double zoom = 3.,
-        int padding = 1, bool normalize = true, int nrows = 0);
+	DataViewer(std::vector <MatrixXd> data, double zoom = 3., 
+        int nrows = 0, int padding = 1, bool normalize = true);
 
 	void run();
 	void wait();

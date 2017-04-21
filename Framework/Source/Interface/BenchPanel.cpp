@@ -25,6 +25,7 @@ void BenchPanel::run()
 	m_window.create(video_mode, "", sf::Style::Close, settings);
 	m_window.setTitle("[HLF] Model Benchmark Panel");
 	m_window.setVerticalSyncEnabled(true);
+	m_window.setFramerateLimit(60);
 
 	m_screen = MatrixXi::Zero(2 * PREVIEW_SIZE, PREVIEW_SIZE);
 	m_image_screen.create(m_screen.rows(), m_screen.cols());

@@ -24,7 +24,7 @@ void TrackBar::render(sf::RenderWindow& window)
 
 	// Progress Bar Filled
 	bar.setSize(sf::Vector2f(m_value * m_dimension.x, m_dimension.y));
-	bar.setFillColor(sf::Color::Blue);
+	bar.setFillColor(sf::Color(64, 128, 255));
 	window.draw(bar);
 
 	// Container
