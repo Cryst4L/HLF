@@ -6,7 +6,7 @@ Button::Button(int w, int h, std::string string)
 	m_dimension = sf::Vector2f(w, h);
 	m_font = initFont(FONT_NAME);
 	m_text.setFont(m_font);
-	m_text.setColor(COLOR_BASE);
+	m_text.setColor(COLOR_MAIN);
 	m_text.setCharacterSize(FONT_MEDIUM);
 	m_text.setString(string);
 }
@@ -26,8 +26,8 @@ void Button::update(CommandStatus& status)
 void Button::render(sf::RenderWindow& window)
 {
 	sf::RectangleShape shape(m_dimension);
-	shape.setFillColor(COLOR_FILL);
-	shape.setOutlineColor(COLOR_BASE);
+	shape.setFillColor(COLOR_BASE);
+	shape.setOutlineColor(COLOR_MAIN);
 	shape.setOutlineThickness(SHAPE_OUTLINE);
 
 	if (!m_focused) {

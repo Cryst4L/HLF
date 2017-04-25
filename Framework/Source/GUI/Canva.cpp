@@ -3,7 +3,7 @@
 Canva::Canva(int w, int h)
 {
 	m_dimension = sf::Vector2f(w, h);
-	m_fill_color = COLOR_FILL;
+	m_fill_color = COLOR_BASE;
 }
 
 void Canva::update(CommandStatus& status) {}
@@ -15,7 +15,7 @@ void Canva::render(sf::RenderWindow& window)
 	shape.setPosition(m_position);
 	shape.setFillColor(m_fill_color);
 
-	shape.setOutlineColor(COLOR_BASE);
+	shape.setOutlineColor(COLOR_MAIN);
 	shape.setOutlineThickness(SHAPE_OUTLINE);
 
 	window.draw(shape);

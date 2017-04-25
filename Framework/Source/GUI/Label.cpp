@@ -5,7 +5,7 @@ Label::Label(std::string string)
 {
 	m_font = initFont(FONT_NAME);
 	m_text.setFont(m_font);
-	m_text.setColor(COLOR_BASE);
+	m_text.setColor(COLOR_MAIN);
 	m_text.setCharacterSize(m_font_size);
 	m_text.setString(string);
 	m_show_outline = false;
@@ -24,11 +24,11 @@ void Label::render(sf::RenderWindow& window)
 
 	sf::RectangleShape shape(m_dimension);
 	shape.setPosition(m_position);
-	shape.setFillColor(COLOR_FILL);
+	shape.setFillColor(COLOR_BASE);
 //	shape.setFillColor(sf::Color::Green);
 
 	if (m_show_outline) {
-		shape.setOutlineColor(COLOR_BASE);
+		shape.setOutlineColor(COLOR_MAIN);
 		shape.setOutlineThickness(SHAPE_OUTLINE);
 	}
 

@@ -31,7 +31,7 @@ Entry::Entry(int w, int h, bool numeric)
 	m_font = initFont(FONT_NAME);
 	m_text.setFont(m_font);
 	m_dimension = sf::Vector2f(w, h);
-	m_text.setColor(COLOR_BASE);
+	m_text.setColor(COLOR_MAIN);
 	m_text.setCharacterSize(m_font_size);
 }
 
@@ -80,12 +80,12 @@ void Entry::render(sf::RenderWindow& window)
 //		globalMutex.lock();
 	sf::RectangleShape shape;
 	shape.setSize(m_dimension);
-	shape.setOutlineColor(COLOR_BASE);
-	shape.setFillColor(COLOR_FILL);
+	shape.setOutlineColor(COLOR_MAIN);
+	shape.setFillColor(COLOR_BASE);
 	shape.setOutlineThickness(SHAPE_OUTLINE);
 
 	if (!m_locked) {
-		shape.setOutlineColor(COLOR_BASE);
+		shape.setOutlineColor(COLOR_MAIN);
 	} else {
 		shape.setOutlineColor(COLOR_LOCK);
 	}

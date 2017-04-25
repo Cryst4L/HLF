@@ -137,7 +137,7 @@ void ConfigPanel::run()
 	m_manager.addWidget(label_number);
 
 	Entry entry_number(150, 30, true);
-	entry_number.setPosition(540, 270);
+	entry_number.setPosition(540, 275);
 	m_manager.addWidget(entry_number);
 
 	Label label_seed("Random Seed   :");

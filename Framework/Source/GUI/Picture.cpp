@@ -24,7 +24,7 @@ void Picture::render(sf::RenderWindow& window)
 		sf::RectangleShape picture_outline(picture_size);
 		picture_outline.setPosition(m_position);
 
-		picture_outline.setOutlineColor(COLOR_BASE);
+		picture_outline.setOutlineColor(COLOR_MAIN);
 		picture_outline.setFillColor(sf::Color::Transparent);
 		picture_outline.setOutlineThickness(SHAPE_OUTLINE);
 		window.draw(picture_outline);
