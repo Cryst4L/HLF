@@ -78,7 +78,7 @@ cmake ..
 make
 ./HLF
 ```
-And that's it ! Also notice that some basic examples are already stored in the _"Examples"_ folder, so you might want to have a look at it ;)
+And that's it ! Also note that some examples are already stored in the _"Examples"_ folder, so you might want to have a look at it ;)
 
 <p align="center">
 <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
