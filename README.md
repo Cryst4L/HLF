@@ -8,7 +8,7 @@ HLF stands for Hand Learning Framework. It is a C++ tool for prototyping and tes
   <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-config.gif"/>
 </p>
 
-#### Project Architecture
+<b> Project Architecture </b>
 
 The project is built around a dataset generation tool, which render the snapshots of the hand model in random poses. The hand pose itself is expressed as a 10 degrees of freedom vector.
 
@@ -16,7 +16,7 @@ In addtion, it integrates a benchmarking pipeline to evaluate the user's model. 
 
 HLF also comes with its own display tools (based on SFML) for configuration and visualization. Hence the user only needs to code his Machine Learning model before he calls the pipeline, which runs in a (minimal) GUI environement.
 
-#### The Learning Task
+<b> The Learning Task </b>
 
 From a ML point of view, this problem is very similar to (and in fact was inspired by) the MNIST challenge, which is already a gold standard for protyping ML models. But with two main differencies:
 
@@ -29,7 +29,7 @@ Compared to the MNIST dataset, the samples are mechanically generated. So there 
 In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight scoring of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
 
 
-#### An Eigen3 Environement
+<b> An Eigen3 Environement </b>
 
 Eigen3 is a very efficient and convenient C++ library for dealing with linear algebra, and HLF makes an extensive use of it, both to render the hand samples, and to represent the data (samples are Eigen3 matrices, targets are Eigen3 vectors). Hence the user of HLF is requested to implement his model using the Eigen3 library (eventhough its not mandatory).
 
@@ -49,11 +49,11 @@ class MyModel : public HLF::Model
 {
   private:
 	// Training
-    void train(std::vector <MatrixXd> &data, std::vector <VectorXd> &targets) {
+	void train(std::vector <MatrixXd> &data, std::vector <VectorXd> &targets) {
 		// Do stuff ...
 	}
 	// Inference
-    VectorXd predict(MatrixXd &sample) {
+	VectorXd predict(MatrixXd &sample) {
 		VectorXd prediction;
 		// Do stuff ...
 		return prediction;
@@ -66,7 +66,7 @@ For convenience the models are implemented in a header-only style. Once this has
 #include "Examples/MyModel.h"
 int main(void) {
 	HLF::DefaultPipeline <MyModel> ();
-    return 0;
+	return 0;
 }
 ```
 
@@ -76,8 +76,11 @@ mkdir build
 cd build
 cmake .. 
 make
+./HLF
 ```
-And that's all ! Some basic examples are already stored int the _"Examples"_ folder, so you might want to have a look at it ;)
+And that's it!  
+
+Some basic examples are already stored int the _"Examples"_ folder, so you might want to have a look at it ;)
 
 <p align="center">
 <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-bench.gif"/>
@@ -115,7 +118,7 @@ such as HMMs or RNNs. Nevertheless it was initially thought to evaluate feed-for
 
 On the other hand, an alternate dataset generator, which build samples according to a continous random walk (similar to what is displayed in the "Configuration Panel"), is the only thing required to support these kinds of models. So I may add this feature at some point.
 
-## Portability, XCB and MultiThreading
+## Portability, MultiThreading, and XCB ...
 
 First of all, this project works like a charm on it's dev machine, a 64bit desktop geared with a Intel (Skylake) CPU and a NVidia GPU, running under Ubuntu 16.04 LTS
 
