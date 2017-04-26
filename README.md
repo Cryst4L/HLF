@@ -8,7 +8,7 @@ HLF stands for Hand Learning Framework. It is a C++ tool for prototyping and tes
   <img src="https://github.com/Cryst4L/HLF/blob/master/Framework/Assets/hlf-config.gif"/>
 </p>
 
-<b> Project Architecture </b>
+__Project Architecture__
 
 The project is built around a dataset generation tool, which render the snapshots of the hand model in random poses. The hand pose itself is expressed as a 10 degrees of freedom vector.
 
@@ -16,7 +16,7 @@ In addtion, it integrates a benchmarking pipeline to evaluate the user's model. 
 
 HLF also comes with its own display tools (based on SFML) for configuration and visualization. Hence the user only needs to code his Machine Learning model before he calls the pipeline, which runs in a (minimal) GUI environement.
 
-<b> The Learning Task </b>
+__The Learning Task__
 
 From a ML point of view, this problem is very similar to (and in fact was inspired by) the MNIST challenge, which is already a gold standard for protyping ML models. But with two main differencies:
 
@@ -29,7 +29,7 @@ Compared to the MNIST dataset, the samples are mechanically generated. So there 
 In HLF the task is a regression: You must infer the hand pose as a vector of 10 variables (degrees of freedom) taking their ranges in 0-1. Hence a straight scoring of a predictor is the average L2 norm of the errors. By this mean we avoid a limitation of the MNIST, which occurs when a predictor reaches very high scores, and the discretisation of the error measure (the number of miss) can become problematic.
 
 
-<b> An Eigen3 Environement </b>
+__An Eigen3 Environement__
 
 Eigen3 is a very efficient and convenient C++ library for dealing with linear algebra, and HLF makes an extensive use of it, both to render the hand samples, and to represent the data (samples are Eigen3 matrices, targets are Eigen3 vectors). Hence the user of HLF is requested to implement his model using the Eigen3 library (eventhough its not mandatory).
 
@@ -90,8 +90,8 @@ Some basic examples are already stored int the _"Examples"_ folder, so you might
 
 As explained earlier, HLF makes an extensive use of:
 
-- The Simple and Fast Multimedia Library: **sudo apt-get install libsfml-dev**
-- The Eigen3 linear algebra library: **sudo apt-get install libeigen3-dev**
+- The Simple and Fast Multimedia Library: ```sudo apt install libsfml-dev```
+- The Eigen3 linear algebra library: ```sudo apt install libeigen3-dev```
 
 Not to mention this project has been developed and tested only in a Linux (Xubuntu) environement. So having a recent Linux machine is _infine_ required :)
 
